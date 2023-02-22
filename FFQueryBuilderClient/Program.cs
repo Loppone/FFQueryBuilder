@@ -2,6 +2,7 @@
 using FFQueryBuilderClient.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace FFQueryBuilderClient
 {
@@ -38,14 +39,20 @@ namespace FFQueryBuilderClient
 
                 filtri.Add(new FilterItem()
                 {
-                    Field = "Id",
-                    Value = "5"
+                    Field = "Oggetto",
+                    Value = "",
+                    Operator = CompareOperator.IsNull
                 });
 
                 var q = ctx.FrnCodaEmails
+                    .Where(x=>x.Id != 10)
                     .FilterBy(filtri);
-                    
+
+                var qs = q.ToQueryString();
+
                 var res = q.ToList();
+
+                FFQueryBuilder.IFilterValue
             }
         }
     }

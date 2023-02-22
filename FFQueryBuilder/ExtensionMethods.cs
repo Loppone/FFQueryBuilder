@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace FFQueryBuilder
 {
-    public static class Filter
+    public static class FFQueryBuilderExtensionMethods
     {
         public static IQueryable<T> FilterBy<T>(this IQueryable<T> query, List<FilterItem> filters) where T : class
         {
@@ -14,7 +14,8 @@ namespace FFQueryBuilder
 
             foreach (var item in filters)
             {
-                if (!string.IsNullOrEmpty(item.Field) && !string.IsNullOrEmpty(item.Value))
+                // NOTA: il valore passato può essere null. Ad esempio quando si filtra con IS NULL/IS NOT NULL
+                if (!string.IsNullOrEmpty(item.Field))
                 {
                     var param = Expression.Parameter(typeof(T), "x");
                     var prop = Expression.PropertyOrField(param, item.Field);
@@ -22,11 +23,12 @@ namespace FFQueryBuilder
 
                     var filterHandlers = FilterFactory.CreateFilters();
                     var filterHandler = filterHandlers.FirstOrDefault(x => x.CanHandle(valueType));
-
                     var value = filterHandler.GetValue(item.Value);
-                    var condition = Expression.Equal(prop, Expression.Constant(value, valueType));
 
-                    var lambda = Expression.Lambda<Func<T, bool>>(condition, param);
+                    var conditionOperatorHandlers = ConditionOperatorFactory.CreateConditionOperators(item.Operator);
+                    var conditionOperatorHandler = conditionOperatorHandlers.Get(prop, value);
+
+                    var lambda = Expression.Lambda<Func<T, bool>>(conditionOperatorHandler, param);
 
                     return query.Where(lambda);
                 }
@@ -36,27 +38,3 @@ namespace FFQueryBuilder
         }
     }
 }
-
-
-
-//object value;
-
-//if (valueType == typeof(DateTime) || valueType == typeof(DateTime?))
-//{
-//    value = DateTime.Parse(item.Value);
-//}
-//else if (valueType == typeof(int))
-//{
-//    value = int.Parse(item.Value);
-//}
-//else if (valueType == typeof(string))
-//{
-//    value = item.Value;
-//}
-//else
-//{
-//    // Aggiungere altre conversioni a seconda dei tipi di proprietà supportati
-//    throw new NotSupportedException($"Il tipo di proprietà {valueType.Name} non è supportato.");
-//}
-
-// var condition = Expression.Equal(prop, Expression.Constant(Convert.ChangeType(item.Valore, valueType), valueType));

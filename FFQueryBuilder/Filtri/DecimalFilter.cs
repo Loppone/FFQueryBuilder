@@ -2,16 +2,16 @@
 
 namespace FFQueryBuilder
 {
-    internal class GuidFactory : IFilterValue
+    internal class DecimalFilter : IFilterValue
     {
         public bool CanHandle(Type TypeOfValue)
         {
-            return (TypeOfValue.Equals(typeof(Guid))) || (TypeOfValue.Equals(typeof(Guid?)));
+            return (TypeOfValue.Equals(typeof(decimal))) || (TypeOfValue.Equals(typeof(decimal?)));
         }
 
         public object GetValue(string value)
         {
-            return Guid.Parse(value);
+            return decimal.Parse(value);
         }
     }
 }
