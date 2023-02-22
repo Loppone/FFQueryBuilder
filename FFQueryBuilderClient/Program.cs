@@ -3,6 +3,7 @@ using FFQueryBuilderClient.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace FFQueryBuilderClient
 {
@@ -51,8 +52,6 @@ namespace FFQueryBuilderClient
                 var qs = q.ToQueryString();
 
                 var res = q.ToList();
-
-                FFQueryBuilder.IFilterValue
             }
         }
     }
