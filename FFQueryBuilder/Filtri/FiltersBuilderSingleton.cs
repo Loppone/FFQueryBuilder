@@ -12,12 +12,17 @@ namespace FFQueryBuilder
             {
                 instance = new List<IFilterValue>
                 {
-                    new DateFilter(),
-                    new IntFilter(),
                     new StringFilter(),
-                    new BoolFilter(),
+                    new CharFilter(),
+                    new DateFilter(),
                     new GuidFilter(),
-                    new DecimalFilter()
+                    
+                    new BoolFilter(),
+
+                    new IntFilter(),
+                    new DecimalFilter(),
+                    new ShortFilter(),
+                    new DoubleFilter(),
                 };
             }
 
