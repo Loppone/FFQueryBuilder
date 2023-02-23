@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-
-#nullable disable
 
 namespace FFQueryBuilderClient.Models
 {
@@ -57,10 +56,6 @@ namespace FFQueryBuilderClient.Models
         public virtual DbSet<FrnVistaCommesseFornitori> FrnVistaCommesseFornitoris { get; set; }
         public virtual DbSet<FrnVistaCommesseGestite> FrnVistaCommesseGestites { get; set; }
         public virtual DbSet<FrnVistaConcatCommesseTipoDocumento> FrnVistaConcatCommesseTipoDocumentos { get; set; }
-        public virtual DbSet<FrnVistaDaValidareTrasversaliCount> FrnVistaDaValidareTrasversaliCounts { get; set; }
-        public virtual DbSet<FrnVistaDaValidareTrasversaliDoc> FrnVistaDaValidareTrasversaliDocs { get; set; }
-        public virtual DbSet<FrnVistaDaValidareUtentiBoCount> FrnVistaDaValidareUtentiBoCounts { get; set; }
-        public virtual DbSet<FrnVistaDaValidareUtentiBoDoc> FrnVistaDaValidareUtentiBoDocs { get; set; }
         public virtual DbSet<FrnVistaDocSolleciti> FrnVistaDocSollecitis { get; set; }
         public virtual DbSet<FrnVistaDocumenti> FrnVistaDocumentis { get; set; }
         public virtual DbSet<FrnVistaDocumentiBase> FrnVistaDocumentiBases { get; set; }
@@ -80,7 +75,6 @@ namespace FFQueryBuilderClient.Models
         public virtual DbSet<FrnVistaRasBase> FrnVistaRasBases { get; set; }
         public virtual DbSet<FrnVistaRasComunicazioneSubappalto> FrnVistaRasComunicazioneSubappaltos { get; set; }
         public virtual DbSet<FrnVistaRasComunicazioniDaInviare> FrnVistaRasComunicazioniDaInviares { get; set; }
-        public virtual DbSet<FrnVistaRasComunicazioniDaInviareUtentiBo> FrnVistaRasComunicazioniDaInviareUtentiBos { get; set; }
         public virtual DbSet<FrnVistaRasFull> FrnVistaRasFulls { get; set; }
         public virtual DbSet<FrnVistaRasFullDataInvioRasNulla> FrnVistaRasFullDataInvioRasNullas { get; set; }
         public virtual DbSet<FrnVistaRdaAssociazioneDocumentiEsistenti> FrnVistaRdaAssociazioneDocumentiEsistentis { get; set; }
@@ -98,8 +92,6 @@ namespace FFQueryBuilderClient.Models
         public virtual DbSet<FrnVistaRdaTuttiDocumentiValidati> FrnVistaRdaTuttiDocumentiValidatis { get; set; }
         public virtual DbSet<FrnVistaRdum> FrnVistaRda { get; set; }
         public virtual DbSet<FrnVistaRilascioOrdine> FrnVistaRilascioOrdines { get; set; }
-        public virtual DbSet<FrnVistaSollecitiUtentiBoCount> FrnVistaSollecitiUtentiBoCounts { get; set; }
-        public virtual DbSet<FrnVistaSollecitiUtentiBoDoc> FrnVistaSollecitiUtentiBoDocs { get; set; }
         public virtual DbSet<FrnVistaStatoDocumento> FrnVistaStatoDocumentos { get; set; }
         public virtual DbSet<FrnVistaStorico> FrnVistaStoricos { get; set; }
         public virtual DbSet<FrnVistaTipiDocumentoCommesse> FrnVistaTipiDocumentoCommesses { get; set; }
@@ -112,45 +104,36 @@ namespace FFQueryBuilderClient.Models
         public virtual DbSet<LogTrasferimentoFileSharepoint> LogTrasferimentoFileSharepoints { get; set; }
         public virtual DbSet<Sollecito> Sollecitos { get; set; }
         public virtual DbSet<StatoSollecito> StatoSollecitos { get; set; }
+        public virtual DbSet<TempAllType> TempAllTypes { get; set; }
+        public virtual DbSet<TempCodiceCluster> TempCodiceClusters { get; set; }
+        public virtual DbSet<TempCodiceTipoPratica> TempCodiceTipoPraticas { get; set; }
+        public virtual DbSet<TempCommessa> TempCommessas { get; set; }
+        public virtual DbSet<TempDocumento> TempDocumentos { get; set; }
+        public virtual DbSet<TempDocumentoCommessa> TempDocumentoCommessas { get; set; }
+        public virtual DbSet<TempDocumentoDm10f24> TempDocumentoDm10f24s { get; set; }
+        public virtual DbSet<TempFornitore> TempFornitores { get; set; }
+        public virtual DbSet<TempRdum> TempRda { get; set; }
+        public virtual DbSet<TempSocietum> TempSocieta { get; set; }
+        public virtual DbSet<TempStatoRdum> TempStatoRda { get; set; }
+        public virtual DbSet<TempTipoDocumento> TempTipoDocumentos { get; set; }
         public virtual DbSet<TmpDocumentiDettRdum> TmpDocumentiDettRda { get; set; }
-        public virtual DbSet<TmpDocumentiNonEsistono> TmpDocumentiNonEsistonos { get; set; }
         public virtual DbSet<TmpDurcDaSistemare> TmpDurcDaSistemares { get; set; }
-        public virtual DbSet<TmpFrnDocumentoPerF24> TmpFrnDocumentoPerF24s { get; set; }
-        public virtual DbSet<TmpInvioProtovolliVecchio> TmpInvioProtovolliVecchios { get; set; }
         public virtual DbSet<TmpMaxDurcValidoFonritore> TmpMaxDurcValidoFonritores { get; set; }
-        public virtual DbSet<TmpStatodocVecchioNuovo> TmpStatodocVecchioNuovos { get; set; }
         public virtual DbSet<ViewAssociazioneRdaFaci> ViewAssociazioneRdaFacis { get; set; }
         public virtual DbSet<ViewAssociazioneRdaFaciBase> ViewAssociazioneRdaFaciBases { get; set; }
         public virtual DbSet<ViewDocScadutiDaRichiedere> ViewDocScadutiDaRichiederes { get; set; }
-        public virtual DbSet<ZCopiaFrnDocumento> ZCopiaFrnDocumentos { get; set; }
-        public virtual DbSet<ZDocumentirdaDetail> ZDocumentirdaDetails { get; set; }
-        public virtual DbSet<ZDocumento> ZDocumentos { get; set; }
-        public virtual DbSet<ZDocumentoCommessa> ZDocumentoCommessas { get; set; }
-        public virtual DbSet<ZDocumentoDm10f24> ZDocumentoDm10f24s { get; set; }
-        public virtual DbSet<ZDocumentoQuietanza> ZDocumentoQuietanzas { get; set; }
-        public virtual DbSet<ZDocumentoRdum> ZDocumentoRda { get; set; }
-        public virtual DbSet<ZF24noloadNovalidNoResp> ZF24noloadNovalidNoResps { get; set; }
-        public virtual DbSet<ZF24siloadNovalidSiresp> ZF24siloadNovalidSiresps { get; set; }
-        public virtual DbSet<ZRdum> ZRda { get; set; }
-        public virtual DbSet<ZRegContrForzatum> ZRegContrForzata { get; set; }
-        public virtual DbSet<ZRegContributivaSap> ZRegContributivaSaps { get; set; }
-        public virtual DbSet<ZStoricoDocumento> ZStoricoDocumentos { get; set; }
-        public virtual DbSet<ZTipoDocumento> ZTipoDocumentos { get; set; }
-        public virtual DbSet<ZViewDocumentiRdadaRichiedere> ZViewDocumentiRdadaRichiederes { get; set; }
-        public virtual DbSet<ZZTempDocumentoStorico> ZZTempDocumentoStoricos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=RKPSQL01PRD.intra.manutencoop.it\\PRD;Initial Catalog=FORNITORI;Persist Security Info=True;connect timeout=3600;User ID=svc_fornitori;Password=srdfHJ45/");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=RKPSQL01DEV.intra.manutencoop.tst\\DEV;Initial Catalog=FORNITORI;Persist Security Info=True;User ID=svc_fornitori;Password=espfLO77!");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
-
             modelBuilder.Entity<FrmVistaQuietanzeBase>(entity =>
             {
                 entity.HasNoKey();
@@ -217,8 +200,7 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.CodiceRda)
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("('-')");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.DataInserimento).HasColumnType("datetime");
 
@@ -272,9 +254,7 @@ namespace FFQueryBuilderClient.Models
                     .IsUnicode(false)
                     .HasColumnName("FACI");
 
-                entity.Property(e => e.Firmadigitaleobbligatoria)
-                    .HasColumnName("FIRMADIGITALEOBBLIGATORIA")
-                    .HasDefaultValueSql("((0))");
+                entity.Property(e => e.Firmadigitaleobbligatoria).HasColumnName("FIRMADIGITALEOBBLIGATORIA");
 
                 entity.Property(e => e.Idtipodocumento)
                     .HasColumnType("numeric(18, 0)")
@@ -330,15 +310,7 @@ namespace FFQueryBuilderClient.Models
             {
                 entity.ToTable("Frn_Documento");
 
-                entity.HasIndex(e => new { e.DataFineValidita, e.IdFornitore, e.IdTipoDocumento }, "DataFineValidita");
-
-                entity.HasIndex(e => new { e.CodiceRda, e.IdTipoDocumento, e.Cartella, e.DataFineValidita, e.IdFornitore }, "NonClusteredIndexPerEscusioneDoppi");
-
-                entity.HasIndex(e => e.CodiceRda, "NonClusteredIndex_frnDocumento_CodiceRDA");
-
-                entity.HasIndex(e => e.IdOld, "documento-idold-20220320-175158");
-
-                entity.HasIndex(e => e.IdOld, "idold-20220319-120837");
+                entity.HasIndex(e => e.CodiceRda, "Frn_Documento_IDX1");
 
                 entity.Property(e => e.Id)
                     .HasColumnType("numeric(18, 0)")
@@ -419,10 +391,6 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Scaduto).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.StatoDocumento).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.UpdateNote)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.Urlrelativa)
                     .HasMaxLength(500)
@@ -592,7 +560,9 @@ namespace FFQueryBuilderClient.Models
                     .HasColumnType("datetime")
                     .HasColumnName("DataInvioSAP");
 
-                entity.Property(e => e.InseritoRimosso).HasMaxLength(20);
+                entity.Property(e => e.InseritoRimosso)
+                    .HasMaxLength(20)
+                    .HasComment("INSERITO oppure RIMOSSO");
 
                 entity.Property(e => e.Tipo)
                     .HasMaxLength(50)
@@ -718,7 +688,8 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.Dataora)
                     .HasColumnType("datetime")
-                    .HasColumnName("dataora");
+                    .HasColumnName("dataora")
+                    .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Esito).HasMaxLength(5);
 
@@ -915,10 +886,6 @@ namespace FFQueryBuilderClient.Models
 
                 entity.ToTable("Frn_Rda_Extra");
 
-                entity.HasIndex(e => e.CodiceRda, "rdaextra-codicerda-20220321-130029");
-
-                entity.HasIndex(e => e.DataInvioRas, "rdaextra-datainvioras-20220321-125951");
-
                 entity.Property(e => e.IdRda).ValueGeneratedNever();
 
                 entity.Property(e => e.CodiceRda)
@@ -976,7 +943,7 @@ namespace FFQueryBuilderClient.Models
                     .HasColumnType("numeric(18, 0)")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.DaSollecitare).HasDefaultValueSql("((0))");
 
@@ -992,7 +959,9 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.IdGruppoValidazione).HasColumnType("numeric(18, 0)");
 
-                entity.Property(e => e.Nome).HasMaxLength(255);
+                entity.Property(e => e.Nome).HasMaxLength(300);
+
+                entity.Property(e => e.NomeFile).HasMaxLength(200);
 
                 entity.Property(e => e.NonVisibile).HasDefaultValueSql("((0))");
 
@@ -1012,7 +981,7 @@ namespace FFQueryBuilderClient.Models
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.Validatore).HasMaxLength(50);
+                entity.Property(e => e.Validatore).HasMaxLength(100);
 
                 entity.HasOne(d => d.IdGruppoValidazioneNavigation)
                     .WithMany(p => p.FrnTipiDocumentos)
@@ -1099,7 +1068,7 @@ namespace FFQueryBuilderClient.Models
                 entity.HasOne(d => d.IdGruppoValidazioneNavigation)
                     .WithMany(p => p.FrnUtentiGruppiValidaziones)
                     .HasForeignKey(d => d.IdGruppoValidazione)
-                    .HasConstraintName("FK_Frn_Utenti_GruppiValidazione_Frn_Gruppi_Validazione");
+                    .HasConstraintName("FK_Frn_Utenti_GruppiValidazione_Frn_Utenti_GruppiValidazione");
 
                 entity.HasOne(d => d.UseradNavigation)
                     .WithMany(p => p.FrnUtentiGruppiValidaziones)
@@ -1248,7 +1217,7 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.IdRda).HasColumnName("IdRDA");
 
@@ -1391,7 +1360,7 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.IdRda).HasColumnName("IdRDA");
 
@@ -1614,201 +1583,6 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
             });
 
-            modelBuilder.Entity<FrnVistaDaValidareTrasversaliCount>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Frn_Vista_Da_Validare_Trasversali_Count");
-
-                entity.Property(e => e.Datafinevalidita)
-                    .HasColumnType("datetime")
-                    .HasColumnName("DATAFINEVALIDITA");
-
-                entity.Property(e => e.Datainiziovalidita)
-                    .HasColumnType("datetime")
-                    .HasColumnName("DATAINIZIOVALIDITA");
-
-                entity.Property(e => e.Dataupload)
-                    .HasColumnType("datetime")
-                    .HasColumnName("DATAUPLOAD");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("FACI");
-
-                entity.Property(e => e.Idfilesharepointupload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("IDFILESHAREPOINTUPLOAD");
-
-                entity.Property(e => e.Idfornitore).HasColumnName("IDFORNITORE");
-
-                entity.Property(e => e.Idtipodocumento)
-                    .HasColumnType("numeric(18, 0)")
-                    .HasColumnName("IDTIPODOCUMENTO");
-
-                entity.Property(e => e.Nomedocumento)
-                    .HasMaxLength(500)
-                    .HasColumnName("NOMEDOCUMENTO");
-            });
-
-            modelBuilder.Entity<FrnVistaDaValidareTrasversaliDoc>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Frn_Vista_Da_Validare_Trasversali_Docs");
-
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
-
-                entity.Property(e => e.CodiceFornitoreSap)
-                    .HasMaxLength(10)
-                    .HasColumnName("CodiceFornitore_SAP");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.Nome).HasMaxLength(255);
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.RagioneSociale).HasMaxLength(150);
-
-                entity.Property(e => e.SapBpid)
-                    .HasMaxLength(50)
-                    .HasColumnName("SAP_BPID");
-            });
-
-            modelBuilder.Entity<FrnVistaDaValidareUtentiBoCount>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Frn_Vista_Da_Validare_UtentiBO_Count");
-
-                entity.Property(e => e.Buyer)
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
-
-                entity.Property(e => e.CodiceFornitoreSap)
-                    .HasMaxLength(10)
-                    .HasColumnName("CodiceFornitore_SAP");
-
-                entity.Property(e => e.Codicerda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("codicerda");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Nome).HasMaxLength(255);
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.RagioneSociale).HasMaxLength(150);
-
-                entity.Property(e => e.SapBpid)
-                    .HasMaxLength(50)
-                    .HasColumnName("SAP_BPID");
-
-                entity.Property(e => e.Societa)
-                    .HasMaxLength(100)
-                    .HasColumnName("societa");
-
-                entity.Property(e => e.UtenteBo)
-                    .HasMaxLength(12)
-                    .IsUnicode(false)
-                    .HasColumnName("UtenteBO");
-
-                entity.Property(e => e.UtenteValidatore)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<FrnVistaDaValidareUtentiBoDoc>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Frn_Vista_Da_Validare_UtentiBO_Docs");
-
-                entity.Property(e => e.Buyer)
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
-
-                entity.Property(e => e.CodiceFornitoreSap)
-                    .HasMaxLength(10)
-                    .HasColumnName("CodiceFornitore_SAP");
-
-                entity.Property(e => e.CodiceRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Nome).HasMaxLength(255);
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.RagioneSociale).HasMaxLength(150);
-
-                entity.Property(e => e.SapBpid)
-                    .HasMaxLength(50)
-                    .HasColumnName("SAP_BPID");
-
-                entity.Property(e => e.Societa)
-                    .HasMaxLength(100)
-                    .HasColumnName("societa");
-
-                entity.Property(e => e.UtenteBo)
-                    .HasMaxLength(12)
-                    .IsUnicode(false)
-                    .HasColumnName("UtenteBO");
-
-                entity.Property(e => e.UtenteValidatore)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
             modelBuilder.Entity<FrnVistaDocSolleciti>(entity =>
             {
                 entity.HasNoKey();
@@ -1819,7 +1593,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.CodiceRda)
                     .HasMaxLength(50)
@@ -1827,25 +1601,29 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.DaCaricareSuSp).HasColumnName("DaCaricareSuSP");
 
+                entity.Property(e => e.DataAttivazione).HasColumnType("datetime");
+
                 entity.Property(e => e.DataEmissione).HasColumnType("datetime");
 
                 entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
 
                 entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
 
-                entity.Property(e => e.DataInvioSollecito).HasColumnType("datetime");
-
                 entity.Property(e => e.DataPresaVisione).HasColumnType("datetime");
 
-                entity.Property(e => e.DataPrevistaProssimoSollecito).HasColumnType("datetime");
+                entity.Property(e => e.DataProssimoInvio).HasColumnType("date");
 
                 entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
 
                 entity.Property(e => e.DataRifiuto).HasColumnType("datetime");
 
+                entity.Property(e => e.DataUltimoInvio).HasColumnType("datetime");
+
                 entity.Property(e => e.DataUpload).HasColumnType("datetime");
 
                 entity.Property(e => e.DataValidazione).HasColumnType("datetime");
+
+                entity.Property(e => e.Descrizione).HasMaxLength(50);
 
                 entity.Property(e => e.EMailReferentePrimario)
                     .HasMaxLength(255)
@@ -1879,9 +1657,11 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.IdSollecito).HasColumnType("numeric(18, 0)");
 
+                entity.Property(e => e.IdStatoSollecito).HasColumnName("idStatoSollecito");
+
                 entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
 
-                entity.Property(e => e.Nome).HasMaxLength(255);
+                entity.Property(e => e.Nome).HasMaxLength(300);
 
                 entity.Property(e => e.NomeDocumento).HasMaxLength(500);
 
@@ -1890,10 +1670,6 @@ namespace FFQueryBuilderClient.Models
                     .HasColumnName("QuietanzaDataInvioSAP");
 
                 entity.Property(e => e.RagioneSociale).HasMaxLength(150);
-
-                entity.Property(e => e.UpdateNote)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.Urlrelativa)
                     .HasMaxLength(500)
@@ -1927,7 +1703,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(12)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.CodiceFornitoreSap).HasMaxLength(10);
 
@@ -1971,7 +1747,9 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.IdFornitore).HasMaxLength(50);
 
-                entity.Property(e => e.NomeDocumento).HasMaxLength(255);
+                entity.Property(e => e.NomeDocumento).HasMaxLength(300);
+
+                entity.Property(e => e.NomeFile).HasMaxLength(200);
 
                 entity.Property(e => e.NomeFileUpload).HasMaxLength(500);
 
@@ -2030,7 +1808,7 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
 
-                entity.Property(e => e.Nome).HasMaxLength(255);
+                entity.Property(e => e.Nome).HasMaxLength(300);
             });
 
             modelBuilder.Entity<FrnVistaDocumentiLiberi>(entity =>
@@ -2039,7 +1817,7 @@ namespace FFQueryBuilderClient.Models
 
                 entity.ToView("Frn_Vista_DocumentiLiberi");
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.CodiceFornitoreSap)
                     .HasMaxLength(10)
@@ -2048,10 +1826,6 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.CodiceRda)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
 
                 entity.Property(e => e.DataPresaVisione).HasColumnType("datetime");
 
@@ -2083,7 +1857,9 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.IdGruppoValidazione).HasColumnType("numeric(18, 0)");
 
-                entity.Property(e => e.Nome).HasMaxLength(255);
+                entity.Property(e => e.Nome).HasMaxLength(300);
+
+                entity.Property(e => e.NomeFileTemplate).HasMaxLength(200);
 
                 entity.Property(e => e.NomeFileUpload).HasMaxLength(500);
 
@@ -2116,7 +1892,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.CodiceRda)
                     .HasMaxLength(50)
@@ -2140,7 +1916,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Nome).HasMaxLength(255);
+                entity.Property(e => e.Nome).HasMaxLength(300);
 
                 entity.Property(e => e.NomeDocumento).HasMaxLength(500);
             });
@@ -2155,7 +1931,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.CodiceRda)
                     .HasMaxLength(50)
@@ -2181,7 +1957,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Nome).HasMaxLength(255);
+                entity.Property(e => e.Nome).HasMaxLength(300);
 
                 entity.Property(e => e.NomeDocumento).HasMaxLength(500);
             });
@@ -2227,7 +2003,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NomeDocumento).HasMaxLength(255);
+                entity.Property(e => e.NomeDocumento).HasMaxLength(300);
 
                 entity.Property(e => e.NomeFile).HasMaxLength(500);
 
@@ -2285,7 +2061,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NomeDocumento).HasMaxLength(255);
+                entity.Property(e => e.NomeDocumento).HasMaxLength(300);
 
                 entity.Property(e => e.NomeFile).HasMaxLength(500);
 
@@ -2322,7 +2098,7 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
 
-                entity.Property(e => e.Nome).HasMaxLength(255);
+                entity.Property(e => e.Nome).HasMaxLength(300);
 
                 entity.Property(e => e.RagioneSocialeFornitore).HasMaxLength(150);
 
@@ -2719,7 +2495,7 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.Importo).HasColumnType("decimal(12, 2)");
 
-                entity.Property(e => e.Nome).HasMaxLength(255);
+                entity.Property(e => e.Nome).HasMaxLength(300);
 
                 entity.Property(e => e.NumDocContabile)
                     .IsRequired()
@@ -3073,226 +2849,7 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.IdRda).HasColumnName("IdRDA");
-
-                entity.Property(e => e.ImportoAutorizzato).HasMaxLength(20);
-
-                entity.Property(e => e.ImportoAutorizzatoRda).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.NoteIntegrRas)
-                    .HasMaxLength(255)
-                    .HasColumnName("NoteIntegrRAS");
-
-                entity.Property(e => e.NoteIntegrRaspostSilenzioAssenso)
-                    .HasMaxLength(255)
-                    .HasColumnName("NoteIntegrRASPostSilenzioAssenso");
-
-                entity.Property(e => e.NumeroRichiesta).HasMaxLength(50);
-
-                entity.Property(e => e.NumeroRichiestaRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.OkDocumenti)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RaccoltaCompletata)
-                    .HasMaxLength(10)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.RagioneSocialeFornitore).HasMaxLength(150);
-
-                entity.Property(e => e.RagioneSocialeSocieta).HasMaxLength(100);
-
-                entity.Property(e => e.SilenzioAssenso).HasMaxLength(1);
-
-                entity.Property(e => e.StatoDocFlow)
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.StatoDocumentoRda)
-                    .IsRequired()
-                    .HasMaxLength(40)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.TipoPratica)
-                    .HasMaxLength(35)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteBackOffice)
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.VerificaSubappalto).HasMaxLength(1);
-            });
-
-            modelBuilder.Entity<FrnVistaRasComunicazioniDaInviareUtentiBo>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Frn_Vista_Ras_Comunicazioni_Da_Inviare_UtentiBO");
-
-                entity.Property(e => e.AreaOrg)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.AutoreRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("AutoreRDA");
-
-                entity.Property(e => e.BuildingManager)
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Buyer)
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Cluster)
-                    .HasMaxLength(35)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceCluster)
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceCommessaLiv1)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.CodiceFornitoreOrigine)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceFornitoreSap).HasMaxLength(10);
-
-                entity.Property(e => e.CodiceFornitoreSrm).HasMaxLength(50);
-
-                entity.Property(e => e.CodiceRda)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("CodiceRDA");
-
-                entity.Property(e => e.CodiceSocieta).HasMaxLength(4);
-
-                entity.Property(e => e.CodiceStato)
-                    .IsRequired()
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceStatoOrigine)
-                    .HasMaxLength(40)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceStatoOriginePrecedente)
-                    .HasMaxLength(40)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceStatoPrecedente)
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceTipoPratica)
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceTipoProtocollo)
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DataAutorizzazioneSubappalto).HasMaxLength(10);
-
-                entity.Property(e => e.DataAutorizzazioneSubappaltosStr)
-                    .HasMaxLength(8)
-                    .HasColumnName("DataAutorizzazioneSubappaltosSTR");
-
-                entity.Property(e => e.DataChiusura).HasColumnType("datetime");
-
-                entity.Property(e => e.DataComunicazioneRichiestaSubappalto).HasColumnType("datetime");
-
-                entity.Property(e => e.DataFineRda)
-                    .HasColumnType("datetime")
-                    .HasColumnName("DataFineRDA");
-
-                entity.Property(e => e.DataFirma).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioRda)
-                    .HasColumnType("datetime")
-                    .HasColumnName("DataInizioRDA");
-
-                entity.Property(e => e.DataIntegrRichAut).HasMaxLength(8);
-
-                entity.Property(e => e.DataIntegrRichAutPostSilenzioAssenso).HasMaxLength(8);
-
-                entity.Property(e => e.DataIntegrRichAutStr).HasMaxLength(4000);
-
-                entity.Property(e => e.DataInvioCapoGruppo)
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DataInvioCapogruppoDateTime).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInvioCapogruppoInvioSap)
-                    .HasColumnType("datetime")
-                    .HasColumnName("DataInvioCapogruppoInvioSAP");
-
-                entity.Property(e => e.DataInvioRasDateTime).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInvioRasInvioSap)
-                    .HasColumnType("datetime")
-                    .HasColumnName("DataInvioRasInvioSAP");
-
-                entity.Property(e => e.DataInvioRasRda)
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DataPresaInCarico).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiestaAutorizzazione)
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DataRichiestaClienteIntegrazioneRas)
-                    .HasMaxLength(8)
-                    .HasColumnName("DataRichiestaClienteIntegrazioneRAS");
-
-                entity.Property(e => e.DataRichiestaClienteIntegrazioneRasStr).HasMaxLength(4000);
-
-                entity.Property(e => e.DataStato).HasColumnType("datetime");
-
-                entity.Property(e => e.Descrizione).HasMaxLength(400);
-
-                entity.Property(e => e.DescrizioneCapogruppo).HasMaxLength(500);
-
-                entity.Property(e => e.DescrizioneCluster)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DescrizioneCommessa).HasMaxLength(50);
-
-                entity.Property(e => e.DescrizioneCommessaLivello1).HasMaxLength(50);
-
-                entity.Property(e => e.DescrizioneTipoPratica)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DocFlow).HasMaxLength(50);
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(24)
-                    .HasColumnName("FACI");
-
-                entity.Property(e => e.Gruppo)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.IdRda).HasColumnName("IdRDA");
 
@@ -3511,7 +3068,7 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.IdRda).HasColumnName("IdRDA");
 
@@ -3730,7 +3287,7 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.IdRda).HasColumnName("IdRDA");
 
@@ -4038,7 +3595,7 @@ namespace FFQueryBuilderClient.Models
             {
                 entity.HasNoKey();
 
-                entity.ToView("Frn_Vista_Rda_Commessa");
+                entity.ToView("FRN_VISTA_RDA_COMMESSA");
 
                 entity.Property(e => e.AreaOrg)
                     .HasMaxLength(50)
@@ -4057,7 +3614,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.CodiceFornitoreSap).HasMaxLength(10);
 
@@ -4141,7 +3698,9 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.NomeDocumento).HasMaxLength(500);
 
-                entity.Property(e => e.NomeTipoDocumento).HasMaxLength(255);
+                entity.Property(e => e.NomeFileTemplate).HasMaxLength(200);
+
+                entity.Property(e => e.NomeTipoDocumento).HasMaxLength(300);
 
                 entity.Property(e => e.NumeroRichiestaRda)
                     .HasMaxLength(50)
@@ -4188,7 +3747,7 @@ namespace FFQueryBuilderClient.Models
             {
                 entity.HasNoKey();
 
-                entity.ToView("Frn_Vista_Rda_Commessa_New");
+                entity.ToView("FRN_VISTA_RDA_COMMESSA_NEW");
 
                 entity.Property(e => e.AreaOrg)
                     .HasMaxLength(50)
@@ -4207,7 +3766,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.CodiceFornitoreSap).HasMaxLength(10);
 
@@ -4282,7 +3841,9 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.NomeDocumento).HasMaxLength(500);
 
-                entity.Property(e => e.NomeTipoDocumento).HasMaxLength(255);
+                entity.Property(e => e.NomeFileTemplate).HasMaxLength(200);
+
+                entity.Property(e => e.NomeTipoDocumento).HasMaxLength(300);
 
                 entity.Property(e => e.NumeroRichiestaRda)
                     .HasMaxLength(50)
@@ -4434,7 +3995,7 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.IdRda).HasColumnName("IdRDA");
 
@@ -4579,7 +4140,7 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.IdRda).HasColumnName("IdRDA");
 
@@ -4873,7 +4434,7 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.IdRda).HasColumnName("IdRDA");
 
@@ -5029,7 +4590,7 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.IdRda).HasColumnName("IdRDA");
 
@@ -5118,143 +4679,6 @@ namespace FFQueryBuilderClient.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<FrnVistaSollecitiUtentiBoCount>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Frn_Vista_Solleciti_UtentiBO_Count");
-
-                entity.Property(e => e.Buyer)
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
-
-                entity.Property(e => e.CodiceFornitoreSap)
-                    .HasMaxLength(10)
-                    .HasColumnName("CodiceFornitore_SAP");
-
-                entity.Property(e => e.CodiceStato)
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Codicerda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("codicerda");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInvioSollecito).HasColumnType("datetime");
-
-                entity.Property(e => e.DataPrevistaProssimoSollecito).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Nome).HasMaxLength(255);
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.RagioneSocialeFornitore).HasMaxLength(150);
-
-                entity.Property(e => e.SapBpid)
-                    .HasMaxLength(50)
-                    .HasColumnName("SAP_BPID");
-
-                entity.Property(e => e.Societa).HasMaxLength(100);
-
-                entity.Property(e => e.UtenteBo)
-                    .HasMaxLength(12)
-                    .IsUnicode(false)
-                    .HasColumnName("UtenteBO");
-
-                entity.Property(e => e.UtenteValidatore)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<FrnVistaSollecitiUtentiBoDoc>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Frn_Vista_Solleciti_UtentiBO_Docs");
-
-                entity.Property(e => e.Buyer)
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
-
-                entity.Property(e => e.CodiceFornitoreSap)
-                    .HasMaxLength(10)
-                    .HasColumnName("CodiceFornitore_SAP");
-
-                entity.Property(e => e.CodiceRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceStato)
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInvioSollecito).HasColumnType("datetime");
-
-                entity.Property(e => e.DataPrevistaProssimoSollecito).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.Descrizione)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Nome).HasMaxLength(255);
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.RagioneSocialeFornitore).HasMaxLength(150);
-
-                entity.Property(e => e.SapBpid)
-                    .HasMaxLength(50)
-                    .HasColumnName("SAP_BPID");
-
-                entity.Property(e => e.Societa).HasMaxLength(100);
-
-                entity.Property(e => e.UtenteBo)
-                    .HasMaxLength(12)
-                    .IsUnicode(false)
-                    .HasColumnName("UtenteBO");
-
-                entity.Property(e => e.UtenteValidatore)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
             modelBuilder.Entity<FrnVistaStatoDocumento>(entity =>
             {
                 entity.HasNoKey();
@@ -5319,7 +4743,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(12)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.CodiceFornitoreSap)
                     .HasMaxLength(10)
@@ -5357,7 +4781,7 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
 
-                entity.Property(e => e.Nome).HasMaxLength(255);
+                entity.Property(e => e.Nome).HasMaxLength(300);
 
                 entity.Property(e => e.NomeDocumento).HasMaxLength(500);
 
@@ -5381,7 +4805,7 @@ namespace FFQueryBuilderClient.Models
 
                 entity.ToView("Frn_Vista_TipiDocumento_Commesse");
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.CodiciCommesse).HasMaxLength(4000);
 
@@ -5399,11 +4823,13 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.IdGruppoValidazione).HasColumnType("numeric(18, 0)");
 
-                entity.Property(e => e.Nome).HasMaxLength(255);
+                entity.Property(e => e.Nome).HasMaxLength(300);
+
+                entity.Property(e => e.NomeFile).HasMaxLength(200);
 
                 entity.Property(e => e.TipologiaFaci).HasMaxLength(100);
 
-                entity.Property(e => e.Validatore).HasMaxLength(50);
+                entity.Property(e => e.Validatore).HasMaxLength(100);
             });
 
             modelBuilder.Entity<FrnVistaValidaDocumenti>(entity =>
@@ -5416,7 +4842,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(12)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.CodiceFornitoreSap).HasMaxLength(10);
 
@@ -5450,7 +4876,7 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.NomeDocumento).HasMaxLength(500);
 
-                entity.Property(e => e.NomeTipoDocumento).HasMaxLength(255);
+                entity.Property(e => e.NomeTipoDocumento).HasMaxLength(300);
 
                 entity.Property(e => e.RagioneSocialeFornitore).HasMaxLength(150);
 
@@ -5583,11 +5009,6 @@ namespace FFQueryBuilderClient.Models
                     .ValueGeneratedOnAdd()
                     .HasColumnName("id");
 
-                entity.Property(e => e.Datainserimento)
-                    .HasColumnType("datetime")
-                    .HasColumnName("datainserimento")
-                    .HasDefaultValueSql("(getdate())");
-
                 entity.Property(e => e.Errore).HasColumnName("errore");
 
                 entity.Property(e => e.IdFrnDocumento)
@@ -5612,6 +5033,7 @@ namespace FFQueryBuilderClient.Models
                     .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.CodiceSap)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -5619,13 +5041,9 @@ namespace FFQueryBuilderClient.Models
 
                 entity.Property(e => e.DataInizioProcessamento).HasColumnType("datetime");
 
-                entity.Property(e => e.FileNotFound).HasDefaultValueSql("((0))");
-
                 entity.Property(e => e.IdSharepoint)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.Storico).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.UrlRelativa)
                     .HasMaxLength(500)
@@ -5664,719 +5082,161 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50);
             });
 
-            modelBuilder.Entity<TmpDocumentiDettRdum>(entity =>
+            modelBuilder.Entity<TempAllType>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("tmp_documenti_dettRDA");
+                entity.ToTable("TEMP_ALL_TYPES");
 
-                entity.Property(e => e.Cartella)
+                entity.Property(e => e.Binary)
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsFixedLength();
 
-                entity.Property(e => e.CodiceRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataPresaVisione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRifiuto).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Id).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdDocumentoLibero).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdRda).HasColumnName("IdRDA");
-
-                entity.Property(e => e.IdSollecito).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.QuietanzaDataInvioSap)
-                    .HasColumnType("datetime")
-                    .HasColumnName("QuietanzaDataInvioSAP");
-
-                entity.Property(e => e.Urlrelativa)
-                    .HasMaxLength(500)
+                entity.Property(e => e.Char)
+                    .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasColumnName("URLRelativa");
+                    .IsFixedLength();
 
-                entity.Property(e => e.UtenteInserimento)
+                entity.Property(e => e.Date).HasColumnType("date");
+
+                entity.Property(e => e.Datetime).HasColumnType("datetime");
+
+                entity.Property(e => e.Decimal).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.Image).HasColumnType("image");
+
+                entity.Property(e => e.Money).HasColumnType("money");
+
+                entity.Property(e => e.Nchar)
+                    .HasMaxLength(10)
+                    .HasColumnName("NChar")
+                    .IsFixedLength();
+
+                entity.Property(e => e.Ntext)
+                    .HasColumnType("ntext")
+                    .HasColumnName("NText");
+
+                entity.Property(e => e.Numeric).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.NvarChar)
+                    .HasMaxLength(50)
+                    .HasColumnName("NVarChar");
+
+                entity.Property(e => e.SmallDatetime).HasColumnType("smalldatetime");
+
+                entity.Property(e => e.SmallMoney).HasColumnType("smallmoney");
+
+                entity.Property(e => e.SqlVariant).HasColumnType("sql_variant");
+
+                entity.Property(e => e.Text).HasColumnType("text");
+
+                entity.Property(e => e.Timestamp)
+                    .IsRowVersion()
+                    .IsConcurrencyToken();
+
+                entity.Property(e => e.VarBinary).HasMaxLength(50);
+
+                entity.Property(e => e.Varchar)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.UtenteRifiuto)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteValidatore)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Xml).HasColumnType("xml");
             });
 
-            modelBuilder.Entity<TmpDocumentiNonEsistono>(entity =>
+            modelBuilder.Entity<TempCodiceCluster>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Codice);
 
-                entity.ToView("tmp_documenti_non_esistono");
+                entity.ToTable("TEMP_CodiceCluster");
 
-                entity.Property(e => e.Cartella)
-                    .HasMaxLength(50)
+                entity.Property(e => e.Codice)
+                    .HasMaxLength(5)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodiceRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataPresaVisione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRifiuto).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Gruppo)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Id)
-                    .HasColumnType("numeric(18, 0)")
-                    .HasColumnName("id");
-
-                entity.Property(e => e.IdDocumentoLibero).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdDocumentoRda).HasColumnName("IdDocumentoRDA");
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdRda).HasColumnName("IdRDA");
-
-                entity.Property(e => e.IdSollecito).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.QuietanzaDataInvioSap)
-                    .HasColumnType("datetime")
-                    .HasColumnName("QuietanzaDataInvioSAP");
-
-                entity.Property(e => e.Urlrelativa)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("URLRelativa");
-
-                entity.Property(e => e.UtenteInserimento)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteRifiuto)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteValidatore)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<TmpDurcDaSistemare>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("tmp_durc_da_sistemare");
-
-                entity.Property(e => e.Idold).HasColumnName("idold");
-            });
-
-            modelBuilder.Entity<TmpFrnDocumentoPerF24>(entity =>
-            {
-                entity.ToTable("TMP_Frn_Documento_per_F24");
-
-                entity.Property(e => e.Id)
-                    .HasColumnType("numeric(18, 0)")
-                    .ValueGeneratedOnAdd();
-
-                entity.Property(e => e.Cartella)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DaCaricareSuSp).HasColumnName("DaCaricareSuSP");
-
-                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInvioSollecito).HasColumnType("datetime");
-
-                entity.Property(e => e.DataPresaVisione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataPrevistaProssimoSollecito).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRifiuto).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GuidRifiuto)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GuidUpload)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GuidValidazione)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdDocumentoLibero).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdDocumentoRda).HasColumnName("idDocumentoRDA");
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdSollecito).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.QuietanzaDataInvioSap)
-                    .HasColumnType("datetime")
-                    .HasColumnName("QuietanzaDataInvioSAP");
-
-                entity.Property(e => e.UpdateNote)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Urlrelativa)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("URLRelativa");
-
-                entity.Property(e => e.UtenteInserimento)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteRifiuto)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteValidatore)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<TmpInvioProtovolliVecchio>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("tmp_invio_protovolli_vecchio");
-
-                entity.Property(e => e.CodiceRda)
+                entity.Property(e => e.Descrizione)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("CodiceRDA");
-
-                entity.Property(e => e.DataCaricamento).HasColumnType("datetime");
-
-                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TmpMaxDurcValidoFonritore>(entity =>
+            modelBuilder.Entity<TempCodiceTipoPratica>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Codice);
 
-                entity.ToView("tmp_max_durc_valido_fonritore");
+                entity.ToTable("TEMP_CodiceTipoPratica");
 
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-            });
+                entity.Property(e => e.Codice)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
 
-            modelBuilder.Entity<TmpStatodocVecchioNuovo>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("tmp_statodoc_vecchio_nuovo");
-
-                entity.Property(e => e.CodiceRda)
+                entity.Property(e => e.Descrizione)
                     .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<TempCommessa>(entity =>
+            {
+                entity.HasKey(e => e.IdCommessa);
+
+                entity.ToTable("TEMP_Commessa");
+
+                entity.Property(e => e.IdCommessa).ValueGeneratedNever();
+
+                entity.Property(e => e.CodiceCliente)
                     .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("CodiceRDA");
+                    .IsFixedLength();
 
-                entity.Property(e => e.DataCaricamento).HasColumnType("datetime");
+                entity.Property(e => e.CodiceCommessa).HasMaxLength(24);
 
-                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
-
-                entity.Property(e => e.Datarespingimento)
-                    .HasColumnType("datetime")
-                    .HasColumnName("datarespingimento");
-            });
-
-            modelBuilder.Entity<ViewAssociazioneRdaFaci>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("View_AssociazioneRdaFaci");
-
-                entity.Property(e => e.Cartella)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
-
-                entity.Property(e => e.CodiceRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DaCaricareSuSp).HasColumnName("DaCaricareSuSP");
-
-                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataPresaVisione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRifiuto).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GuidRifiuto)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GuidUpload)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GuidValidazione)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Id).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdDocumentoLibero).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdDocumentoRda).HasColumnName("idDocumentoRDA");
-
-                entity.Property(e => e.IdFileSharepointTemplate).HasMaxLength(50);
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdSollecito).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.NomeDocumentoTemplate).HasMaxLength(255);
-
-                entity.Property(e => e.QuietanzaDataInvioSap)
-                    .HasColumnType("datetime")
-                    .HasColumnName("QuietanzaDataInvioSAP");
-
-                entity.Property(e => e.UpdateNote)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Urlrelativa)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("URLRelativa");
-
-                entity.Property(e => e.UtenteInserimento)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteRifiuto)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteValidatore)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<ViewAssociazioneRdaFaciBase>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("View_AssociazioneRdaFaci_Base");
-
-                entity.Property(e => e.Cartella)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
-
-                entity.Property(e => e.CodiceRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DaCaricareSuSp).HasColumnName("DaCaricareSuSP");
-
-                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataPresaVisione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRifiuto).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GuidRifiuto)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GuidUpload)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GuidValidazione)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Id).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdDocumentoLibero).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdDocumentoRda).HasColumnName("idDocumentoRDA");
-
-                entity.Property(e => e.IdFileSharepointTemplate).HasMaxLength(50);
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdSollecito).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.NomeDocumentoTemplate).HasMaxLength(255);
-
-                entity.Property(e => e.QuietanzaDataInvioSap)
-                    .HasColumnType("datetime")
-                    .HasColumnName("QuietanzaDataInvioSAP");
-
-                entity.Property(e => e.UpdateNote)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Urlrelativa)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("URLRelativa");
-
-                entity.Property(e => e.UtenteInserimento)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteRifiuto)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteValidatore)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<ViewDocScadutiDaRichiedere>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("ViewDocScadutiDaRichiedere");
-
-                entity.Property(e => e.CodiceDocumento).HasMaxLength(25);
-
-                entity.Property(e => e.CodiceRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodicefornitoreSap)
-                    .HasMaxLength(10)
-                    .HasColumnName("codicefornitore_sap");
-
-                entity.Property(e => e.DataAutorizzazioneSubappalto).HasMaxLength(10);
-
-                entity.Property(e => e.DataFineRda)
-                    .HasColumnType("datetime")
-                    .HasColumnName("DataFineRDA");
-
-                entity.Property(e => e.DatafineRdAoriginale)
-                    .HasColumnType("datetime")
-                    .HasColumnName("DatafineRdAOriginale");
-
-                entity.Property(e => e.EMailReferenteprimario)
-                    .HasMaxLength(255)
-                    .HasColumnName("eMailReferenteprimario");
-
-                entity.Property(e => e.FineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.Id)
-                    .HasColumnType("numeric(18, 0)")
-                    .HasColumnName("id");
-
-                entity.Property(e => e.IdTipoDoc)
-                    .HasColumnType("numeric(18, 0)")
-                    .HasColumnName("idTipoDoc");
-
-                entity.Property(e => e.IdTipoDocumento)
-                    .HasColumnType("numeric(18, 0)")
-                    .HasColumnName("idTipoDocumento");
-
-                entity.Property(e => e.Nome)
-                    .HasMaxLength(255)
-                    .HasColumnName("nome");
-
-                entity.Property(e => e.RagioneSociale)
-                    .HasMaxLength(150)
-                    .HasColumnName("ragioneSociale");
-            });
-
-            modelBuilder.Entity<ZCopiaFrnDocumento>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("Z_Copia_Frn_Documento");
-
-                entity.Property(e => e.Cartella)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataPresaVisione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRifiuto).HasColumnType("datetime");
-
-                entity.Property(e => e.DataUpload).HasColumnType("datetime");
-
-                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
-
-                entity.Property(e => e.Faci)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Id).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdDocumentoLibero).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdFileSharepointUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdSollecito).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
-
-                entity.Property(e => e.QuietanzaDataInvioSap)
-                    .HasColumnType("datetime")
-                    .HasColumnName("QuietanzaDataInvioSAP");
-
-                entity.Property(e => e.Urlrelativa)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("URLRelativa");
-
-                entity.Property(e => e.UtenteInserimento)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteRifiuto)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteUpload)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UtenteValidatore)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<ZDocumentirdaDetail>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Z_DOCUMENTIRDA_DETAILS");
-
-                entity.Property(e => e.CodiceRdacodiceCompleto)
+                entity.Property(e => e.CodiceCommessaLiv1)
                     .IsRequired()
-                    .HasMaxLength(10)
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.CodiceFiliale)
+                    .HasMaxLength(5)
                     .IsUnicode(false)
-                    .HasColumnName("CodiceRDACodiceCompleto");
+                    .IsFixedLength();
 
-                entity.Property(e => e.DataCaricamento).HasColumnType("datetime");
+                entity.Property(e => e.DataFineCommessa).HasColumnType("datetime");
 
-                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
+                entity.Property(e => e.DataFineProrogaEffettiva).HasColumnType("datetime");
 
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
+                entity.Property(e => e.DataInizioCommessa).HasColumnType("datetime");
 
-                entity.Property(e => e.DataFineValiditaRegolaritaContributiva).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValiditaRegolaritaContributiva).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRespingimento).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiestaDocumento).HasColumnType("datetime");
-
-                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
-
-                entity.Property(e => e.Gruppo)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdDocumentoDm10f24).HasColumnName("IdDocumentoDM10F24");
-
-                entity.Property(e => e.IdDocumentoRda).HasColumnName("IdDocumentoRDA");
-
-                entity.Property(e => e.SpuserInserimento)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("SPUserInserimento");
-
-                entity.Property(e => e.SpuserRespingimento)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("SPUserRespingimento");
-
-                entity.Property(e => e.Urlrelativa)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("URLRelativa");
-
-                entity.Property(e => e.ValidatoreSpuser)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("ValidatoreSPUser");
-
-                entity.Property(e => e.ZIdRda).HasColumnName("z_idRda");
-
-                entity.Property(e => e.ZzAnnoRiferimento).HasColumnName("ZZ_AnnoRiferimento");
-
-                entity.Property(e => e.ZzDataPresentazione)
+                entity.Property(e => e.DataPrimaRda)
                     .HasColumnType("datetime")
-                    .HasColumnName("ZZ_DataPresentazione");
+                    .HasColumnName("DataPrimaRDA");
+
+                entity.Property(e => e.DataProrogaEffettiva).HasColumnType("datetime");
+
+                entity.Property(e => e.DataProrogaPotenziale).HasColumnType("datetime");
+
+                entity.Property(e => e.DataUltimaModifica).HasColumnType("datetime");
+
+                entity.Property(e => e.DefaultPerRda).HasColumnName("DefaultPerRDA");
+
+                entity.Property(e => e.DescrizioneCommessa).HasMaxLength(50);
+
+                entity.Property(e => e.IdStato)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Stato).HasMaxLength(2);
+
+                entity.Property(e => e.TipoCliente).HasMaxLength(8);
+
+                entity.Property(e => e.TipoCommessa)
+                    .IsRequired()
+                    .HasMaxLength(30);
             });
 
-            modelBuilder.Entity<ZDocumento>(entity =>
+            modelBuilder.Entity<TempDocumento>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToTable("z_Documento");
+                entity.ToTable("TEMP_Documento");
 
                 entity.Property(e => e.DataCaricamento).HasColumnType("datetime");
 
@@ -6425,107 +5285,126 @@ namespace FFQueryBuilderClient.Models
                     .HasColumnName("ZZ_DataPresentazione");
             });
 
-            modelBuilder.Entity<ZDocumentoCommessa>(entity =>
+            modelBuilder.Entity<TempDocumentoCommessa>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToTable("Z_DocumentoCommessa");
+                entity.ToTable("TEMP_DocumentoCommessa");
 
-                entity.Property(e => e.Gruppo)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
+                entity.Property(e => e.CodiceCommessa)
+                    .HasMaxLength(10)
+                    .IsFixedLength();
 
-            modelBuilder.Entity<ZDocumentoDm10f24>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("z_DocumentoDM10F24");
-
-                entity.Property(e => e.IdDocumentoDm10f24).HasColumnName("IdDocumentoDM10F24");
-            });
-
-            modelBuilder.Entity<ZDocumentoQuietanza>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("z_DocumentoQuietanza");
-
-                entity.Property(e => e.Anno)
-                    .IsRequired()
-                    .HasMaxLength(4);
-
-                entity.Property(e => e.Cliente).HasMaxLength(150);
-
-                entity.Property(e => e.Contratto).HasMaxLength(10);
-
-                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataPagamento).HasColumnType("datetime");
-
-                entity.Property(e => e.Importo).HasColumnType("decimal(12, 2)");
-
-                entity.Property(e => e.InviatoSap).HasColumnName("InviatoSAP");
-
-                entity.Property(e => e.NumDocContabile)
-                    .IsRequired()
-                    .HasMaxLength(10);
-
-                entity.Property(e => e.NumFattura).HasMaxLength(16);
-
-                entity.Property(e => e.NumPratica)
-                    .IsRequired()
-                    .HasMaxLength(10);
-
-                entity.Property(e => e.Ordine).HasMaxLength(10);
-
-                entity.Property(e => e.Referente).HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<ZDocumentoRdum>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("Z_DocumentoRDA");
-
-                entity.HasIndex(e => e.IdDocumento, "NonClusteredIndexdocrdax-20220319-120908");
-
-                entity.Property(e => e.CodiceRda)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
 
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IdDocumentoRda).HasColumnName("IdDocumentoRDA");
-
-                entity.Property(e => e.IdRda).HasColumnName("IdRDA");
+                entity.Property(e => e.IdTipoDocumentoNew).HasColumnType("numeric(18, 0)");
             });
 
-            modelBuilder.Entity<ZF24noloadNovalidNoResp>(entity =>
+            modelBuilder.Entity<TempDocumentoDm10f24>(entity =>
+            {
+                entity.HasKey(e => e.IdDocumentoDm10f24)
+                    .IsClustered(false);
+
+                entity.ToTable("TEMP_DocumentoDM10F24");
+
+                entity.HasIndex(e => e.IdDocumentoDm10f24, "ClusteredIndex-20210714-003241")
+                    .IsUnique()
+                    .IsClustered();
+
+                entity.Property(e => e.IdDocumentoDm10f24)
+                    .ValueGeneratedNever()
+                    .HasColumnName("IdDocumentoDM10F24");
+            });
+
+            modelBuilder.Entity<TempFornitore>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToView("z_f24noload_novalid_no_resp");
+                entity.ToTable("TEMP_Fornitore");
 
-                entity.Property(e => e.Idfornitore).HasColumnName("idfornitore");
+                entity.Property(e => e.Cap)
+                    .HasMaxLength(10)
+                    .HasColumnName("CAP");
+
+                entity.Property(e => e.Cellulare).HasMaxLength(16);
+
+                entity.Property(e => e.CodiceFiscale).HasMaxLength(16);
+
+                entity.Property(e => e.CodiceFornitoreSap)
+                    .HasMaxLength(10)
+                    .HasColumnName("CodiceFornitore_SAP");
+
+                entity.Property(e => e.DataUltimoOdaBem)
+                    .HasColumnType("datetime")
+                    .HasColumnName("DataUltimoODA_BEM");
+
+                entity.Property(e => e.EMailReferentePrimario)
+                    .HasMaxLength(255)
+                    .HasColumnName("eMailReferentePrimario");
+
+                entity.Property(e => e.Fax).HasMaxLength(31);
+
+                entity.Property(e => e.Indirizzo).HasMaxLength(71);
+
+                entity.Property(e => e.InvioRegConSap).HasColumnName("InvioRegConSAP");
+
+                entity.Property(e => e.Lingua).HasMaxLength(2);
+
+                entity.Property(e => e.Localita).HasMaxLength(40);
+
+                entity.Property(e => e.Nazione).HasMaxLength(40);
+
+                entity.Property(e => e.NomeReferentePrimario)
+                    .HasMaxLength(101)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.OrganizzAcquisti).HasMaxLength(4);
+
+                entity.Property(e => e.PartitaIva).HasMaxLength(11);
+
+                entity.Property(e => e.PartitaIvaInternazionale).HasMaxLength(20);
+
+                entity.Property(e => e.PartitaIvaStenr)
+                    .HasMaxLength(18)
+                    .HasColumnName("PartitaIva_STENR");
+
+                entity.Property(e => e.Provincia).HasMaxLength(40);
+
+                entity.Property(e => e.RagioneSociale).HasMaxLength(150);
+
+                entity.Property(e => e.SapBpid)
+                    .HasMaxLength(50)
+                    .HasColumnName("SAP_BPID");
+
+                entity.Property(e => e.Telefono).HasMaxLength(30);
+
+                entity.Property(e => e.UltimoInvioRegConSap)
+                    .HasColumnType("datetime")
+                    .HasColumnName("UltimoInvioRegConSAP");
+
+                entity.Property(e => e.UrlAreaRiservata)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UrlPortaleSpecifico)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UtenteAd)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("UtenteAD");
             });
 
-            modelBuilder.Entity<ZF24siloadNovalidSiresp>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("z_f24siload_novalid_siresp");
-
-                entity.Property(e => e.Idfornitore).HasColumnName("idfornitore");
-            });
-
-            modelBuilder.Entity<ZRdum>(entity =>
+            modelBuilder.Entity<TempRdum>(entity =>
             {
                 entity.HasKey(e => e.IdRda);
 
-                entity.ToTable("Z_RDA");
+                entity.ToTable("TEMP_RDA");
 
                 entity.Property(e => e.IdRda)
                     .ValueGeneratedNever()
@@ -6628,7 +5507,7 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.Gruppo)
                     .HasMaxLength(20)
                     .IsUnicode(false)
-                    .IsFixedLength(true);
+                    .IsFixedLength();
 
                 entity.Property(e => e.ImportoAutorizzato).HasMaxLength(20);
 
@@ -6664,82 +5543,46 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.VerificaSubappalto).HasMaxLength(1);
             });
 
-            modelBuilder.Entity<ZRegContrForzatum>(entity =>
+            modelBuilder.Entity<TempSocietum>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdSocieta);
 
-                entity.ToTable("z_RegContrForzata");
+                entity.ToTable("TEMP_Societa");
 
-                entity.Property(e => e.DataUltimaForzatura).HasColumnType("datetime");
+                entity.Property(e => e.IdSocieta).ValueGeneratedNever();
+
+                entity.Property(e => e.CodiceSocieta).HasMaxLength(4);
+
+                entity.Property(e => e.GestioneSp).HasColumnName("GestioneSP");
+
+                entity.Property(e => e.RagioneSociale).HasMaxLength(100);
             });
 
-            modelBuilder.Entity<ZRegContributivaSap>(entity =>
+            modelBuilder.Entity<TempStatoRdum>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => new { e.IdSocieta, e.CodiceStato, e.CodiceStatoOrigine });
 
-                entity.ToTable("z_RegContributivaSAP");
+                entity.ToTable("TEMP_StatoRDA");
 
-                entity.Property(e => e.CodFornitore)
+                entity.Property(e => e.CodiceStato)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CodiceStatoOrigine)
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DescrizioneStato)
                     .IsRequired()
-                    .HasMaxLength(10)
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.DataFineValRegContr).HasColumnType("datetime");
-
-                entity.Property(e => e.IdRegContributivaSap).HasColumnName("IdRegContributivaSAP");
+                    .HasMaxLength(40)
+                    .IsUnicode(false);
             });
 
-            modelBuilder.Entity<ZStoricoDocumento>(entity =>
+            modelBuilder.Entity<TempTipoDocumento>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToTable("z_StoricoDocumento");
-
-                entity.Property(e => e.DataCaricamento).HasColumnType("datetime");
-
-                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataFineValiditaRegolaritaContributiva).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValiditaRegolaritaContributiva).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRespingimento).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiestaDocumento).HasColumnType("datetime");
-
-                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
-
-                entity.Property(e => e.SpuserRespingimento)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("SPUserRespingimento");
-
-                entity.Property(e => e.Urlrelativa)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("URLRelativa");
-
-                entity.Property(e => e.ValidatoreSpuser)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("ValidatoreSPUser");
-
-                entity.Property(e => e.ZzAnnoRiferimento).HasColumnName("ZZ_AnnoRiferimento");
-
-                entity.Property(e => e.ZzDataPresentazione)
-                    .HasColumnType("datetime")
-                    .HasColumnName("ZZ_DataPresentazione");
-            });
-
-            modelBuilder.Entity<ZTipoDocumento>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("z_TipoDocumento");
+                entity.ToTable("TEMP_TipoDocumento");
 
                 entity.Property(e => e.CodiceDocumento)
                     .IsRequired()
@@ -6766,83 +5609,11 @@ namespace FFQueryBuilderClient.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<ZViewDocumentiRdadaRichiedere>(entity =>
+            modelBuilder.Entity<TmpDocumentiDettRdum>(entity =>
             {
                 entity.HasNoKey();
 
-                entity.ToTable("z_ViewDocumentiRDAdaRichiedere");
-
-                entity.Property(e => e.Buyer)
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CodiceFornitoreSap)
-                    .HasMaxLength(10)
-                    .HasColumnName("CodiceFornitore_SAP");
-
-                entity.Property(e => e.CodiceRda)
-                    .IsRequired()
-                    .HasMaxLength(11)
-                    .IsUnicode(false)
-                    .HasColumnName("CodiceRDA");
-
-                entity.Property(e => e.DataCaricamento).HasColumnType("datetime");
-
-                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
-
-                entity.Property(e => e.DataRichiestaDocumento).HasColumnType("datetime");
-
-                entity.Property(e => e.Descrizione)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DescrizioneCommessa).HasMaxLength(50);
-
-                entity.Property(e => e.DocumentState)
-                    .IsRequired()
-                    .HasMaxLength(9)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.IdRda).HasColumnName("IdRDA");
-
-                entity.Property(e => e.NomeSocieta).HasMaxLength(100);
-
-                entity.Property(e => e.RagioneSociale).HasMaxLength(150);
-
-                entity.Property(e => e.SapBpid)
-                    .HasMaxLength(50)
-                    .HasColumnName("SAP_BPID");
-
-                entity.Property(e => e.Urlrelativa)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("URLRelativa");
-
-                entity.Property(e => e.Urltemplate)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("URLTemplate");
-
-                entity.Property(e => e.UtenteBo)
-                    .HasMaxLength(12)
-                    .IsUnicode(false)
-                    .HasColumnName("UtenteBO");
-
-                entity.Property(e => e.ValidatoreSpuser)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("ValidatoreSPUser");
-            });
-
-            modelBuilder.Entity<ZZTempDocumentoStorico>(entity =>
-            {
-                entity.ToTable("z_zTemp_Documento_Storico");
-
-                entity.Property(e => e.Id)
-                    .HasColumnType("numeric(18, 0)")
-                    .ValueGeneratedOnAdd();
+                entity.ToView("tmp_documenti_dettRDA");
 
                 entity.Property(e => e.Cartella)
                     .HasMaxLength(50)
@@ -6886,6 +5657,8 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Id).HasColumnType("numeric(18, 0)");
+
                 entity.Property(e => e.IdDocumentoLibero).HasColumnType("numeric(18, 0)");
 
                 entity.Property(e => e.IdDocumentoRda).HasColumnName("idDocumentoRDA");
@@ -6894,9 +5667,7 @@ namespace FFQueryBuilderClient.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IdFrnDocumento)
-                    .HasColumnType("numeric(18, 0)")
-                    .HasColumnName("idFrnDocumento");
+                entity.Property(e => e.IdRda).HasColumnName("IdRDA");
 
                 entity.Property(e => e.IdSollecito).HasColumnType("numeric(18, 0)");
 
@@ -6907,10 +5678,6 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.QuietanzaDataInvioSap)
                     .HasColumnType("datetime")
                     .HasColumnName("QuietanzaDataInvioSAP");
-
-                entity.Property(e => e.UpdateNote)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.Urlrelativa)
                     .HasMaxLength(500)
@@ -6932,6 +5699,269 @@ namespace FFQueryBuilderClient.Models
                 entity.Property(e => e.UtenteValidatore)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<TmpDurcDaSistemare>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("tmp_durc_da_sistemare");
+
+                entity.Property(e => e.Idold).HasColumnName("idold");
+            });
+
+            modelBuilder.Entity<TmpMaxDurcValidoFonritore>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("tmp_max_durc_valido_fonritore");
+
+                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<ViewAssociazioneRdaFaci>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("View_AssociazioneRdaFaci");
+
+                entity.Property(e => e.Cartella)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
+
+                entity.Property(e => e.CodiceRda)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DaCaricareSuSp).HasColumnName("DaCaricareSuSP");
+
+                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
+
+                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
+
+                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
+
+                entity.Property(e => e.DataPresaVisione).HasColumnType("datetime");
+
+                entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
+
+                entity.Property(e => e.DataRifiuto).HasColumnType("datetime");
+
+                entity.Property(e => e.DataUpload).HasColumnType("datetime");
+
+                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
+
+                entity.Property(e => e.Faci)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GuidRifiuto)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GuidUpload)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GuidValidazione)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Id).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.IdDocumentoLibero).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.IdDocumentoRda).HasColumnName("idDocumentoRDA");
+
+                entity.Property(e => e.IdFileSharepointTemplate).HasMaxLength(50);
+
+                entity.Property(e => e.IdFileSharepointUpload)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IdSollecito).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
+
+                entity.Property(e => e.NomeDocumentoTemplate).HasMaxLength(300);
+
+                entity.Property(e => e.NomeFileTemplate).HasMaxLength(200);
+
+                entity.Property(e => e.QuietanzaDataInvioSap)
+                    .HasColumnType("datetime")
+                    .HasColumnName("QuietanzaDataInvioSAP");
+
+                entity.Property(e => e.Urlrelativa)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("URLRelativa");
+
+                entity.Property(e => e.UtenteInserimento)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UtenteRifiuto)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UtenteUpload)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UtenteValidatore)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ViewAssociazioneRdaFaciBase>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("View_AssociazioneRdaFaci_Base");
+
+                entity.Property(e => e.Cartella)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
+
+                entity.Property(e => e.CodiceRda)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DaCaricareSuSp).HasColumnName("DaCaricareSuSP");
+
+                entity.Property(e => e.DataEmissione).HasColumnType("datetime");
+
+                entity.Property(e => e.DataFineValidita).HasColumnType("datetime");
+
+                entity.Property(e => e.DataInizioValidita).HasColumnType("datetime");
+
+                entity.Property(e => e.DataPresaVisione).HasColumnType("datetime");
+
+                entity.Property(e => e.DataRichiesta).HasColumnType("datetime");
+
+                entity.Property(e => e.DataRifiuto).HasColumnType("datetime");
+
+                entity.Property(e => e.DataUpload).HasColumnType("datetime");
+
+                entity.Property(e => e.DataValidazione).HasColumnType("datetime");
+
+                entity.Property(e => e.Faci)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GuidRifiuto)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GuidUpload)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GuidValidazione)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Id).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.IdDocumentoLibero).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.IdDocumentoRda).HasColumnName("idDocumentoRDA");
+
+                entity.Property(e => e.IdFileSharepointTemplate).HasMaxLength(50);
+
+                entity.Property(e => e.IdFileSharepointUpload)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IdSollecito).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.IdTipoDocumento).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.NomeDocumento).HasMaxLength(500);
+
+                entity.Property(e => e.NomeDocumentoTemplate).HasMaxLength(300);
+
+                entity.Property(e => e.NomeFileTemplate).HasMaxLength(200);
+
+                entity.Property(e => e.QuietanzaDataInvioSap)
+                    .HasColumnType("datetime")
+                    .HasColumnName("QuietanzaDataInvioSAP");
+
+                entity.Property(e => e.Urlrelativa)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("URLRelativa");
+
+                entity.Property(e => e.UtenteInserimento)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UtenteRifiuto)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UtenteUpload)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UtenteValidatore)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ViewDocScadutiDaRichiedere>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("ViewDocScadutiDaRichiedere");
+
+                entity.Property(e => e.CodiceDocumento).HasMaxLength(50);
+
+                entity.Property(e => e.CodiceRda)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CodicefornitoreSap)
+                    .HasMaxLength(10)
+                    .HasColumnName("codicefornitore_sap");
+
+                entity.Property(e => e.DataAutorizzazioneSubappalto).HasMaxLength(10);
+
+                entity.Property(e => e.DataFineRda)
+                    .HasColumnType("datetime")
+                    .HasColumnName("DataFineRDA");
+
+                entity.Property(e => e.EMailReferenteprimario)
+                    .HasMaxLength(255)
+                    .HasColumnName("eMailReferenteprimario");
+
+                entity.Property(e => e.FineValidita).HasColumnType("datetime");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("numeric(18, 0)")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.IdTipoDoc)
+                    .HasColumnType("numeric(18, 0)")
+                    .HasColumnName("idTipoDoc");
+
+                entity.Property(e => e.IdTipoDocumento)
+                    .HasColumnType("numeric(18, 0)")
+                    .HasColumnName("idTipoDocumento");
+
+                entity.Property(e => e.Nome)
+                    .HasMaxLength(300)
+                    .HasColumnName("nome");
+
+                entity.Property(e => e.RagioneSociale)
+                    .HasMaxLength(150)
+                    .HasColumnName("ragioneSociale");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace FFQueryBuilderClient.Models
 {
     public partial class FrnVistaDocumenti
@@ -16,7 +14,7 @@ namespace FFQueryBuilderClient.Models
         public string IdFileSharepoint { get; set; }
         public string DescrizioneStato { get; set; }
         public int? StatoDocumento { get; set; }
-        public decimal? Id { get; set; }
+        public decimal Id { get; set; }
         public string Societa { get; set; }
         public string DescrizioneCommessa { get; set; }
         public string IdFornitore { get; set; }

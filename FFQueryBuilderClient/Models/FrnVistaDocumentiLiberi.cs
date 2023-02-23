@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace FFQueryBuilderClient.Models
 {
     public partial class FrnVistaDocumentiLiberi
@@ -37,7 +35,5 @@ namespace FFQueryBuilderClient.Models
         public string CodiceRda { get; set; }
         public string DescrizioneStatoDocumento { get; set; }
         public decimal? IdGruppoValidazione { get; set; }
-        public DateTime? DataInizioValidita { get; set; }
-        public DateTime? DataFineValidita { get; set; }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace FFQueryBuilderClient.Models
 {
     public partial class FrnUtenti
@@ -12,6 +10,9 @@ namespace FFQueryBuilderClient.Models
             FrnUtentiGruppiValidaziones = new HashSet<FrnUtentiGruppiValidazione>();
         }
 
+        /// <summary>
+        /// 0=sola visualizzazione; 1=modifica (se ha i permessi sul documento da gruppo validazione)
+        /// </summary>
         public string Userad { get; set; }
         public short? LivelloAutorizzazione { get; set; }
         public string Nomecognome { get; set; }

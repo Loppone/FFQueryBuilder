@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace FFQueryBuilderClient.Models
 {
     public partial class ViewDocScadutiDaRichiedere
@@ -21,6 +19,5 @@ namespace FFQueryBuilderClient.Models
         public string RagioneSociale { get; set; }
         public string EMailReferenteprimario { get; set; }
         public DateTime? DataFineRda { get; set; }
-        public DateTime? DatafineRdAoriginale { get; set; }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace FFQueryBuilderClient.Models
 {
     public partial class FrnVistaCodaMail
@@ -20,5 +18,6 @@ namespace FFQueryBuilderClient.Models
         public string InviatoA { get; set; }
         public int? EventoId { get; set; }
         public string NomeCognome { get; set; }
+        public int? IdDocumento { get; set; }
     }
 }

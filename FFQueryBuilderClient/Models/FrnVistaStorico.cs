@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace FFQueryBuilderClient.Models
 {
     public partial class FrnVistaStorico
@@ -10,7 +8,7 @@ namespace FFQueryBuilderClient.Models
         public decimal? IdDocumento { get; set; }
         public decimal? IdDocumentoStorico { get; set; }
         public string CodiceRda { get; set; }
-        public decimal IdTipoDocumento { get; set; }
+        public decimal? IdTipoDocumento { get; set; }
         public string CodiceDocumento { get; set; }
         public string Nome { get; set; }
         public string DescrizioneStato { get; set; }

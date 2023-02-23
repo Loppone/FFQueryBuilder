@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace FFQueryBuilderClient.Models
 {
     public partial class FrnDocumento
@@ -43,16 +41,16 @@ namespace FFQueryBuilderClient.Models
         public DateTime? DataPresaVisione { get; set; }
         public DateTime? QuietanzaDataInvioSap { get; set; }
         public string MotivoRifiuto { get; set; }
-        public string Urlrelativa { get; set; }
         public bool? DaCaricareSuSp { get; set; }
         public bool? GeneratoDaScaduto { get; set; }
         public int? UpdateVersion { get; set; }
-        public string UpdateNote { get; set; }
+        public int? UpdateNote { get; set; }
         public Guid? IdDocumentoRda { get; set; }
         public string GuidUpload { get; set; }
         public string GuidValidazione { get; set; }
         public string GuidRifiuto { get; set; }
         public bool? Scaduto { get; set; }
+        public string Urlrelativa { get; set; }
         public DateTime? DataInvioSollecito { get; set; }
         public DateTime? DataPrevistaProssimoSollecito { get; set; }
         public int? NumeroSolleciti { get; set; }

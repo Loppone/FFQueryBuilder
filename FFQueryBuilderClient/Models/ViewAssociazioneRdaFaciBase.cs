@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace FFQueryBuilderClient.Models
 {
     public partial class ViewAssociazioneRdaFaciBase
@@ -47,7 +45,7 @@ namespace FFQueryBuilderClient.Models
         public bool? DaCaricareSuSp { get; set; }
         public bool? GeneratoDaScaduto { get; set; }
         public int? UpdateVersion { get; set; }
-        public string UpdateNote { get; set; }
+        public int? UpdateNote { get; set; }
         public Guid? IdDocumentoRda { get; set; }
         public string GuidUpload { get; set; }
         public string GuidValidazione { get; set; }

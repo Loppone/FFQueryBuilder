@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace FFQueryBuilderClient.Models
 {
     public partial class FrnLogDurc
@@ -12,6 +10,9 @@ namespace FFQueryBuilderClient.Models
         public DateTime? Data { get; set; }
         public string Stato { get; set; }
         public string Messaggio { get; set; }
+        /// <summary>
+        /// DURC oppure FORZATURA
+        /// </summary>
         public string TipoInvio { get; set; }
     }
 }

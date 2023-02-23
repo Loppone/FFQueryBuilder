@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace FFQueryBuilderClient.Models
 {
     public partial class FrnVistaDocSolleciti
     {
+        public int? IdStatoSollecito { get; set; }
+        public string Descrizione { get; set; }
+        public DateTime? DataAttivazione { get; set; }
+        public bool? IsActive { get; set; }
+        public int? IdStato { get; set; }
+        public DateTime? DataUltimoInvio { get; set; }
+        public DateTime? DataProssimoInvio { get; set; }
+        public int? TipoSollecitoUltimoInvio { get; set; }
+        public int? NumeroSollecitiInviati { get; set; }
+        public int? NumeroMassimoSolleciti { get; set; }
         public string CodiceDocumento { get; set; }
         public string Nome { get; set; }
         public string DescrizioneDocumento { get; set; }
@@ -48,18 +56,15 @@ namespace FFQueryBuilderClient.Models
         public DateTime? DataPresaVisione { get; set; }
         public DateTime? QuietanzaDataInvioSap { get; set; }
         public string MotivoRifiuto { get; set; }
-        public string Urlrelativa { get; set; }
         public bool? DaCaricareSuSp { get; set; }
         public bool? GeneratoDaScaduto { get; set; }
         public int? UpdateVersion { get; set; }
-        public string UpdateNote { get; set; }
+        public int? UpdateNote { get; set; }
         public Guid? IdDocumentoRda { get; set; }
         public string GuidUpload { get; set; }
         public string GuidValidazione { get; set; }
         public string GuidRifiuto { get; set; }
         public bool? Scaduto { get; set; }
-        public DateTime? DataInvioSollecito { get; set; }
-        public DateTime? DataPrevistaProssimoSollecito { get; set; }
-        public int? NumeroSolleciti { get; set; }
+        public string Urlrelativa { get; set; }
     }
 }
