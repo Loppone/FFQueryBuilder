@@ -20,6 +20,7 @@ namespace FFQueryBuilder
                     new LessThanOrEqualComparer(),
                     new IsNullComparer(),
                     new IsNotNullComparer(),
+                    new ContainsComparer()
                 };
             }
 

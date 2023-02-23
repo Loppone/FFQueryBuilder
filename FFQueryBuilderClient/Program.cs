@@ -3,7 +3,6 @@ using FFQueryBuilderClient.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace FFQueryBuilderClient
 {
@@ -40,14 +39,21 @@ namespace FFQueryBuilderClient
 
                 filtri.Add(new FilterItem()
                 {
-                    Field = "Oggetto",
-                    Value = "",
-                    Operator = CompareOperator.IsNull
+                    Field = "InviatoA",
+                    Value = "support",
+                    Operator = CompareOperator.Contiene
                 });
 
+                var order = new OrderItem()
+                {
+                    Field = "CodiceRda",
+                    TypeOfOrder = OrderType.Discendente
+                };
+
                 var q = ctx.FrnCodaEmails
-                    .Where(x=>x.Id != 10)
-                    .FilterBy(filtri);
+                    .FilterBy(filtri)
+                    .OrderByField(order)
+                    ;
 
                 var qs = q.ToQueryString();
 

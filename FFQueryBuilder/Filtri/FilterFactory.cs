@@ -1,20 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
 
 namespace FFQueryBuilder
 {
     internal static class FilterFactory
     {
-        public static List<IFilterValue> CreateFilters()
+        public static IFilterValue CreateFilters(Type type)
         {
-            return new List<IFilterValue>
-            {
-                new DateFilter(),
-                new IntFilter(),
-                new StringFilter(),
-                new BoolFilter(),
-                new GuidFilter(),
-                new DecimalFilter()
-            };
+            var filters = FiltersBuilderSingleton.GetInstance();
+            return filters.FirstOrDefault(x=>x.CanHandle(type));
         }
     }
 }

@@ -9,6 +9,7 @@
         MaggioreUguale,
         MinoreUguale,
         IsNull,
-        IsNotNull
+        IsNotNull,
+        Contiene
     }
 }

@@ -12,29 +12,50 @@ namespace FFQueryBuilder
             if (filters == null || filters.Count == 0)
                 return query;
 
-            foreach (var item in filters)
+            foreach (var filter in filters)
             {
                 // NOTA: il valore passato può essere null. Ad esempio quando si filtra con IS NULL/IS NOT NULL
-                if (!string.IsNullOrEmpty(item.Field))
+                if (!string.IsNullOrEmpty(filter.Field))
                 {
                     var param = Expression.Parameter(typeof(T), "x");
-                    var prop = Expression.PropertyOrField(param, item.Field);
-                    var valueType = prop.Type;
+                    var prop = Expression.PropertyOrField(param, filter.Field);
 
-                    var filterHandlers = FilterFactory.CreateFilters();
-                    var filterHandler = filterHandlers.FirstOrDefault(x => x.CanHandle(valueType));
-                    var value = filterHandler.GetValue(item.Value);
+                    var filterHandler = FilterFactory.CreateFilters(prop.Type);
+                    var value = filterHandler.GetValue(filter.Value);
 
-                    var conditionOperatorHandlers = ConditionOperatorFactory.CreateConditionOperators(item.Operator);
-                    var conditionOperatorHandler = conditionOperatorHandlers.Get(prop, value);
+                    var conditionOperatorHandler = ConditionOperatorFactory.CreateConditionOperators(filter.Operator);
+                    var @operator = conditionOperatorHandler.Get(prop, value);
 
-                    var lambda = Expression.Lambda<Func<T, bool>>(conditionOperatorHandler, param);
+                    var lambda = Expression.Lambda<Func<T, bool>>(@operator, param);
 
                     return query.Where(lambda);
                 }
             }
 
             return query;
+        }
+
+        public static IQueryable<T> OrderByField<T>(this IQueryable<T> query, OrderItem order)
+        {
+            if (order == null || string.IsNullOrEmpty(order.Field))
+                return query;
+
+            var parameter = Expression.Parameter(typeof(T), "x");
+            var property = Expression.Property(parameter, order.Field);
+            var lambda = Expression.Lambda(property, parameter);
+            var isDescending = order.TypeOfOrder == OrderType.Discendente;
+
+            string methodName = isDescending ? "OrderByDescending" : "OrderBy";
+
+            var resultExpression = Expression.Call(
+                typeof(Queryable),
+                methodName,
+                new[] { typeof(T), property.Type },
+                query.Expression,
+                Expression.Quote(lambda)
+            );
+
+            return query.Provider.CreateQuery<T>(resultExpression);
         }
     }
 }
