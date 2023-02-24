@@ -3,6 +3,7 @@ using FFQueryBuilderClient.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace FFQueryBuilderClient
 {
@@ -12,28 +13,13 @@ namespace FFQueryBuilderClient
         {
             using (var ctx = new FORNITORIContext())
             {
-                var filtri = new List<FFQueryBuilder.FilterItem>();
+                Console.Clear();
 
-                filtri.Add(new FilterItem()
-                {
-                    Field = "LivelloAutorizzazione",
-                    Value = "1",
-                    Operator = CompareOperator.Uguale
-                });
+                ProgramHelpers.SimpleQuery(ctx);
+                ProgramHelpers.SimpleQueryDateBetween(ctx);
+                ProgramHelpers.QueryWithSelectFields(ctx);
 
-                var order = new OrderItem()
-                {
-                    Field = "CodiceRda",
-                    TypeOfOrder = OrderType.Discendente
-                };
-
-                var q = ctx.FrnUtentis
-                    .FilterBy(filtri);
-                    //.OrderByField(order);
-
-                var qs = q.ToQueryString();
-
-                var res = q.ToList();
+                Console.ReadKey();
             }
         }
     }

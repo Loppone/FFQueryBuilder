@@ -28,7 +28,7 @@ namespace FFQueryBuilder
 
                     var lambda = Expression.Lambda<Func<T, bool>>(@operator, param);
 
-                    return query.Where(lambda);
+                    query = query.Where(lambda);
                 }
             }
 
