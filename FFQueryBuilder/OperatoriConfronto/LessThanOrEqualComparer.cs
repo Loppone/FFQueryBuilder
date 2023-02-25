@@ -9,7 +9,7 @@ namespace FFQueryBuilder
         {
             get
             {
-                return CompareOperator.Minore;
+                return CompareOperator.MinoreUguale;
             }
         }
 

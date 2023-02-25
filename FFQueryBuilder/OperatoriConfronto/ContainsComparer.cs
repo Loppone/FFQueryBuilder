@@ -17,7 +17,9 @@ namespace FFQueryBuilder
             var methodInfo = typeof(string).GetMethod("Contains", new[] { typeof(string) });
 
             return Expression.Call(expression, methodInfo, Expression.Constant(value, expression.Type));
+
         }
     }
 }
+
 

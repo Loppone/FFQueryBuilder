@@ -121,5 +121,30 @@ namespace FFQueryBuilderClient
             Console.WriteLine($"Righe trovate: {res.Count()}");
             Console.WriteLine();
         }
+
+        internal static void SqlDataTypeQuery(FORNITORIContext ctx)
+        {
+            Console.WriteLine("Query con filtri di tipo derivante da Sql Server. Lista filtri su tipi dati:");
+            Console.WriteLine("Long/Float/Object/TimeSpan/Byte/DateTimeOffset");
+
+            var filtri = new List<FFQueryBuilder.FilterItem>()
+            {
+                new FilterItem() { Field = "Bigint", Value = "123", Operator = CompareOperator.Maggiore },
+                new FilterItem() { Field = "Float", Value = "3,14", Operator = CompareOperator.Uguale },
+                new FilterItem() { Field = "SqlVariant", Value = "11", Operator = CompareOperator.Diverso },
+                new FilterItem() { Field = "Time", Value = new TimeSpan(1, 30, 0).ToString(), Operator = CompareOperator.Maggiore },
+                new FilterItem() { Field = "TinyInt", Value = "255", Operator = CompareOperator.Minore },
+                new FilterItem() { Field = "DateTimeOffset", Value = DateTimeOffset.Now.ToString(), Operator = CompareOperator.MinoreUguale }
+            };
+
+            var q = ctx.TempAllTypes
+                .FilterBy(filtri);
+
+            var qs = q.ToQueryString();
+            var res = q.ToList();
+
+            Console.WriteLine($"Righe trovate: {res.Count()}");
+            Console.WriteLine();
+        }
     }
 }

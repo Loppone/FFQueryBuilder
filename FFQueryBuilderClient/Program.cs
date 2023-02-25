@@ -15,9 +15,10 @@ namespace FFQueryBuilderClient
             {
                 Console.Clear();
 
-                ProgramHelpers.SimpleQuery(ctx);
-                ProgramHelpers.SimpleQueryDateBetween(ctx);
-                ProgramHelpers.QueryWithSelectFields(ctx);
+                //ProgramHelpers.SimpleQuery(ctx);
+                //ProgramHelpers.SimpleQueryDateBetween(ctx);
+                //ProgramHelpers.QueryWithSelectFields(ctx);
+                ProgramHelpers.SqlDataTypeQuery(ctx);
 
                 Console.ReadKey();
             }

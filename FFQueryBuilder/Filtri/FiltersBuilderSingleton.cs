@@ -14,15 +14,21 @@ namespace FFQueryBuilder
                 {
                     new StringFilter(),
                     new CharFilter(),
-                    new DateFilter(),
                     new GuidFilter(),
+                    new ObjectFilter(),
                     
+                    new DateFilter(),
+                    new TimeSpanFilter(),
+                    new DateTimeOffsetFilter(),
+
                     new BoolFilter(),
 
                     new IntFilter(),
+                    new LongFilter(),
                     new DecimalFilter(),
                     new ShortFilter(),
                     new DoubleFilter(),
+                    new ByteFilter(),
                 };
             }
 

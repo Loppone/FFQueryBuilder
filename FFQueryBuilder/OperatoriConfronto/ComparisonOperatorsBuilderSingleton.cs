@@ -14,6 +14,7 @@ namespace FFQueryBuilder
                 instance = new List<IComparisonOperator>()
                 {
                     new EqualComparer(),
+                    new NotEqualComparer(),
                     new GreaterThanComparer(),
                     new GreaterThanOrEqualComparer(),
                     new LessThanComparer(),
