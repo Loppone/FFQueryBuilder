@@ -18,7 +18,8 @@ namespace FFQueryBuilderClient
                 //ProgramHelpers.SimpleQuery(ctx);
                 //ProgramHelpers.SimpleQueryDateBetween(ctx);
                 //ProgramHelpers.QueryWithSelectFields(ctx);
-                ProgramHelpers.SqlDataTypeQuery(ctx);
+                //ProgramHelpers.SqlDataTypeQuery(ctx);
+                ProgramHelpers.ListFilter();
 
                 Console.ReadKey();
             }

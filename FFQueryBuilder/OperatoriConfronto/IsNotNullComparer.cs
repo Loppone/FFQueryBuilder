@@ -14,11 +14,7 @@ namespace FFQueryBuilder
 
         public Expression Get(Expression expression, object value)
         {
-          //  return Expression.NotEqual(Expression.Property(expression, "prop"), Expression.Constant(null, expression.Type));
-
             return Expression.NotEqual(expression, Expression.Constant(null, expression.Type));
-
-            //  return Expression.NotEqual(Expression.Property(expression, "prop"), Expression.Constant(null, typeof(object)));
         }
     }
 }
