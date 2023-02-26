@@ -16,7 +16,7 @@ namespace FFQueryBuilder
                     new CharFilter(),
                     new GuidFilter(),
                     new ObjectFilter(),
-                    
+
                     new DateFilter(),
                     new TimeSpanFilter(),
                     new DateTimeOffsetFilter(),
@@ -27,6 +27,7 @@ namespace FFQueryBuilder
                     new LongFilter(),
                     new DecimalFilter(),
                     new ShortFilter(),
+                    new FloatFilter(),
                     new DoubleFilter(),
                     new ByteFilter(),
                 };

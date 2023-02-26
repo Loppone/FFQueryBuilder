@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31911.196
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFQueryBuilder", "FFQueryBuilder\FFQueryBuilder.csproj", "{9AC3357D-02E8-4F61-A844-E04643D6398C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFQueryBuilder", "FFQueryBuilder\FFQueryBuilder.csproj", "{9AC3357D-02E8-4F61-A844-E04643D6398C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFQueryBuilderClient", "FFQueryBuilderClient\FFQueryBuilderClient.csproj", "{277838C7-039D-49EC-9849-D867A86D893A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFQueryBuilderClient", "FFQueryBuilderClient\FFQueryBuilderClient.csproj", "{277838C7-039D-49EC-9849-D867A86D893A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFQueryBuilderTest", "FFQueryBuilderTest\FFQueryBuilderTest.csproj", "{91DF1D85-12C5-4958-80EB-7C3C10DC416A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{277838C7-039D-49EC-9849-D867A86D893A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{277838C7-039D-49EC-9849-D867A86D893A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{277838C7-039D-49EC-9849-D867A86D893A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91DF1D85-12C5-4958-80EB-7C3C10DC416A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91DF1D85-12C5-4958-80EB-7C3C10DC416A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91DF1D85-12C5-4958-80EB-7C3C10DC416A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91DF1D85-12C5-4958-80EB-7C3C10DC416A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

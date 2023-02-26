@@ -129,6 +129,7 @@ namespace FFQueryBuilderClient
 
             var filtri = new List<FFQueryBuilder.FilterItem>()
             {
+                new FilterItem() { Field = "Real", Value = "12,10", Operator = CompareOperator.Maggiore },
                 new FilterItem() { Field = "Bigint", Value = "123", Operator = CompareOperator.Maggiore },
                 new FilterItem() { Field = "Float", Value = "3,14", Operator = CompareOperator.Uguale },
                 new FilterItem() { Field = "SqlVariant", Value = "11", Operator = CompareOperator.Diverso },
@@ -153,6 +154,7 @@ namespace FFQueryBuilderClient
 
             var filtri = new List<FFQueryBuilder.FilterItem>()
             {
+                new FilterItem() { Field = "Real", Value = "12,10", Operator = CompareOperator.Maggiore },
                 new FilterItem() { Field = "Bigint", Value = "123", Operator = CompareOperator.Maggiore },
                 new FilterItem() { Field = "Float", Value = "3,14", Operator = CompareOperator.Uguale },
                 new FilterItem() { Field = "SqlVariant", Value = "11", Operator = CompareOperator.Diverso },
@@ -163,12 +165,12 @@ namespace FFQueryBuilderClient
 
             var lista = new List<TempAllType>()
             {
-                new TempAllType(){BigInt=10, Float=3.14, SqlVariant="ciao", Time=new TimeSpan(1, 30, 0), TinyInt=55, DatetimeOffset=DateTimeOffset.Now.AddDays(1)},
-                new TempAllType(){BigInt=190, Float=333.51, SqlVariant="123", Time=new TimeSpan(2, 10, 40), TinyInt=12, DatetimeOffset=DateTimeOffset.Now.AddDays(5)},
-                new TempAllType(){BigInt=810, Float=3.14, SqlVariant="hola", Time=new TimeSpan(10, 50, 10), TinyInt=43, DatetimeOffset=DateTimeOffset.Now.AddDays(-1)},
-                new TempAllType(){BigInt=180, Float=123.23, SqlVariant="", Time=new TimeSpan(4, 45, 0), TinyInt=99, DatetimeOffset=DateTimeOffset.Now.AddDays(-4)},
-                new TempAllType(){BigInt=4, Float=654.11, SqlVariant="p0p0", Time=new TimeSpan(3, 12, 34), TinyInt=254, DatetimeOffset=DateTimeOffset.Now.AddDays(8)},
-                new TempAllType(){BigInt=124, Float=3.14, SqlVariant=null, Time=new TimeSpan(2, 05, 0), TinyInt=133, DatetimeOffset=DateTimeOffset.Now.AddDays(-12)}
+                new TempAllType(){BigInt=10, Real=1.20f, Float=3.14, SqlVariant="ciao", Time=new TimeSpan(1, 30, 0), TinyInt=55, DatetimeOffset=DateTimeOffset.Now.AddDays(1)},
+                new TempAllType(){BigInt=190,Real=1.20f, Float=333.51, SqlVariant="123", Time=new TimeSpan(2, 10, 40), TinyInt=12, DatetimeOffset=DateTimeOffset.Now.AddDays(5)},
+                new TempAllType(){BigInt=810,Real=1.20f, Float=3.14, SqlVariant="hola", Time=new TimeSpan(10, 50, 10), TinyInt=43, DatetimeOffset=DateTimeOffset.Now.AddDays(-1)},
+                new TempAllType(){BigInt=180,Real=1.20f, Float=123.23, SqlVariant="", Time=new TimeSpan(4, 45, 0), TinyInt=99, DatetimeOffset=DateTimeOffset.Now.AddDays(-4)},
+                new TempAllType(){BigInt=4,Real=1.20f, Float=654.11, SqlVariant="p0p0", Time=new TimeSpan(3, 12, 34), TinyInt=254, DatetimeOffset=DateTimeOffset.Now.AddDays(8)},
+                new TempAllType(){BigInt=124,Real=1.20f, Float=3.14, SqlVariant=null, Time=new TimeSpan(2, 05, 0), TinyInt=133, DatetimeOffset=DateTimeOffset.Now.AddDays(-12)}
             };
 
             var q = lista
