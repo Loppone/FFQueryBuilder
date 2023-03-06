@@ -96,31 +96,70 @@ namespace FFQueryBuilderClient
             var aliasDbContextPassatoDalClient = "SqlServer";
             var fornitori = DbContextFactory.Instance.CreateDbContext(aliasDbContextPassatoDalClient);
 
-            var properties = fornitori.GetType().GetProperties();
+            var mp2 = DbContextFactory.Instance.CreateDbContext("Oracle");
+
             var dbSets = new List<Type>();
+            var properties = fornitori.GetType().GetProperties();
             foreach (var property in properties)
             {
                 var propertyType = property.PropertyType;
                 if (propertyType.IsGenericType && propertyType.Name.ToLower().Contains("dbset"))
                 {
-                    Type dbSetType = propertyType.GenericTypeArguments[0]; 
+                    Type dbSetType = propertyType.GenericTypeArguments[0];
                     dbSets.Add(dbSetType);
                 }
             }
 
-            var filtro1 = new List<FilterItem>()
+            var propertiesOracle = mp2.GetType().GetProperties();
+            foreach (var property in propertiesOracle)
+            {
+                var propertyType = property.PropertyType;
+                if (propertyType.IsGenericType && propertyType.Name.ToLower().Contains("dbset"))
+                {
+                    Type dbSetType = propertyType.GenericTypeArguments[0];
+                    dbSets.Add(dbSetType);
+                }
+            }
+
+
+            var filtro0 = new List<FilterItem>()
                 {
                     new FilterItem()
                     {
-                        Field = "userad",
-                        Value = "sa",
-                        Operator = CompareOperator.Contiene
+                        Field = "SITEID",
+                        Value = "TESTCC",
+                        Operator = CompareOperator.Uguale
+                    },
+                    new FilterItem()
+                    {
+                        Field = "TASKNUM",
+                        Value = "AAAQ",
+                        Operator =  CompareOperator.Uguale
                     }
                 };
-            var tipoSql = dbSets.FirstOrDefault(x=>x.Name.Contains("FrnUtenti")); // Sql
-            Type tipoInternoEFForSql = typeof(InternalDbSet<>).MakeGenericType(tipoSql);
-            dynamic istanzaSql = Activator.CreateInstance(tipoInternoEFForSql, fornitori, tipoSql.Name);
-            var sqlData =  GetData(fornitori, istanzaSql, filtro1, 0, 10);
+            var tipoSql0 = dbSets.FirstOrDefault(x => x.Name.Contains("Woreq")); // Sql
+            Type tipoInternoEFForSql0 = typeof(InternalDbSet<>).MakeGenericType(tipoSql0);
+            dynamic istanzaSql0 = Activator.CreateInstance(tipoInternoEFForSql0, mp2, tipoSql0.Name);
+            var sqlData = GetData(mp2, istanzaSql0, filtro0, 0, 10);
+
+
+
+
+            //var filtro1 = new List<FilterItem>()
+            //    {
+            //        new FilterItem()
+            //        {
+            //            Field = "SiteId",
+            //            Value = "TESTCC",
+            //            Operator = CompareOperator.Uguale
+            //        }
+            //    };
+            //var tipoSql = dbSets.FirstOrDefault(x=>x.Name.Contains("FrnUtenti")); // Sql
+            //Type tipoInternoEFForSql = typeof(InternalDbSet<>).MakeGenericType(tipoSql);
+            //dynamic istanzaSql = Activator.CreateInstance(tipoInternoEFForSql, fornitori, tipoSql.Name);
+            //var sqlData =  GetData(fornitori, istanzaSql, filtro1, 0, 10);
+
+
 
             var filtro2 = new List<FilterItem>()
                 {
@@ -138,17 +177,20 @@ namespace FFQueryBuilderClient
         }
 
         public static List<T> GetData<T>(
-            DbContext db, 
-            Microsoft.EntityFrameworkCore.DbSet<T> _, 
+            DbContext db,
+            Microsoft.EntityFrameworkCore.DbSet<T> _,
             List<FilterItem> filtri,
-            int skip = 0, 
+            int skip = 0,
             int size = 10000) where T : class
         {
-            return db.Set<T>()
-                .FilterBy(filtri)
-                .Skip(skip)
-                .Take(size)
-                .ToList();
+            var q = db.Set<T>()
+            .FilterBy(filtri)
+            .Skip(skip + 1)
+            .Take(size);
+
+            var qs = q.ToQueryString();
+
+            return q.ToList();
         }
     }
 }
