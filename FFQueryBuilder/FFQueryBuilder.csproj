@@ -7,4 +7,16 @@
     <StartupObject />
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Factories\Contexts\Interface1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Factories\Contexts\" />
+  </ItemGroup>
+
 </Project>
