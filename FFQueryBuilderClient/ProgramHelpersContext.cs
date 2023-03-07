@@ -4,8 +4,14 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Internal;
 using System.Data.Entity;
-using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 using FFQueryBuilder;
+using FFQueryBuilder.Context;
+using DbContext = Microsoft.EntityFrameworkCore.DbContext;
+using FF3DContexts.SqlModels;
+using FF3DContexts.OracleModels;
+using FFQueryBuilder.Models;
+using FFQueryBuilder.DataAccess;
+using System.Reflection;
 
 namespace FFQueryBuilderClient
 {
@@ -91,38 +97,33 @@ namespace FFQueryBuilderClient
             // Cambiato idea. Isolo EF nella dll
             // WebApi agnostiche. Ad ogni cliente viene distribuita la dll del core comprensiva di contesti custom.
 
+            // I modelli dei db li passo nel client avendo un riferimento alla dll apposita per cliente
 
+            var whatInside = DbContextFactory.AddDbContext("SqlServer", new FORNITORIContext());
+            Console.WriteLine(whatInside.ToFormattedString());
 
-            var aliasDbContextPassatoDalClient = "SqlServer";
-            var fornitori = DbContextFactory.Instance.CreateDbContext(aliasDbContextPassatoDalClient);
+            Console.WriteLine();
 
-            var mp2 = DbContextFactory.Instance.CreateDbContext("Oracle");
+            whatInside = DbContextFactory.AddDbContext("Oracle", new ModelContext());
+            Console.WriteLine(whatInside.ToFormattedString());
 
-            var dbSets = new List<Type>();
-            var properties = fornitori.GetType().GetProperties();
-            foreach (var property in properties)
-            {
-                var propertyType = property.PropertyType;
-                if (propertyType.IsGenericType && propertyType.Name.ToLower().Contains("dbset"))
-                {
-                    Type dbSetType = propertyType.GenericTypeArguments[0];
-                    dbSets.Add(dbSetType);
-                }
-            }
+            var fornitori = DbContextFactory.GetDbContext("SqlServer");
+            var mp2 = DbContextFactory.GetDbContext("Oracle");
 
-            var propertiesOracle = mp2.GetType().GetProperties();
-            foreach (var property in propertiesOracle)
-            {
-                var propertyType = property.PropertyType;
-                if (propertyType.IsGenericType && propertyType.Name.ToLower().Contains("dbset"))
-                {
-                    Type dbSetType = propertyType.GenericTypeArguments[0];
-                    dbSets.Add(dbSetType);
-                }
-            }
+            var dbSets = fornitori.GetType().GetProperties()
+                .Where(prop => prop.PropertyType.IsGenericType && prop.PropertyType.Name.ToLower().Contains("dbset"))
+                .Select(ptype => ptype.PropertyType.GetGenericArguments()[0])
+                .ToList();
 
+            var mp2dbSets = mp2.GetType().GetProperties()
+                .Where(prop => prop.PropertyType.IsGenericType && prop.PropertyType.Name.ToLower().Contains("dbset"))
+                .Select(ptype => ptype.PropertyType.GetGenericArguments()[0])
+                .ToList();
 
-            var filtro0 = new List<FilterItem>()
+            dbSets.AddRange(mp2dbSets);
+
+            var pageDto = new Paging();
+            pageDto.Filters = new List<FilterItem>()
                 {
                     new FilterItem()
                     {
@@ -137,60 +138,19 @@ namespace FFQueryBuilderClient
                         Operator =  CompareOperator.Uguale
                     }
                 };
-            var tipoSql0 = dbSets.FirstOrDefault(x => x.Name.Contains("Woreq")); // Sql
-            Type tipoInternoEFForSql0 = typeof(InternalDbSet<>).MakeGenericType(tipoSql0);
-            dynamic istanzaSql0 = Activator.CreateInstance(tipoInternoEFForSql0, mp2, tipoSql0.Name);
-            var sqlData = GetData(mp2, istanzaSql0, filtro0, 0, 10);
+            pageDto.Order = new OrderItem()
+            {
+                Field = "REQUESTNUM",
+                TypeOfOrder = OrderType.Ascendente
+            };
+            pageDto.CurrentPage = 1;
+            pageDto.ItemPerPage = 5;
 
+            IPaging data = new PagingQuery();
 
+            var dt = data.GetData(mp2, dbSets, "Woreq", pageDto);
 
-
-            //var filtro1 = new List<FilterItem>()
-            //    {
-            //        new FilterItem()
-            //        {
-            //            Field = "SiteId",
-            //            Value = "TESTCC",
-            //            Operator = CompareOperator.Uguale
-            //        }
-            //    };
-            //var tipoSql = dbSets.FirstOrDefault(x=>x.Name.Contains("FrnUtenti")); // Sql
-            //Type tipoInternoEFForSql = typeof(InternalDbSet<>).MakeGenericType(tipoSql);
-            //dynamic istanzaSql = Activator.CreateInstance(tipoInternoEFForSql, fornitori, tipoSql.Name);
-            //var sqlData =  GetData(fornitori, istanzaSql, filtro1, 0, 10);
-
-
-
-            var filtro2 = new List<FilterItem>()
-                {
-                    new FilterItem()
-                    {
-                        Field = "nomedocumento",
-                        Value = "durc",
-                        Operator = CompareOperator.Uguale
-                    }
-                };
-            var tipoSql2 = dbSets.FirstOrDefault(x => x.Name.Contains("FrnDocumento")); // Sql
-            Type tipoInternoEFForSql2 = typeof(InternalDbSet<>).MakeGenericType(tipoSql2);
-            dynamic istanzaSql2 = Activator.CreateInstance(tipoInternoEFForSql2, fornitori, tipoSql2.Name);
-            var sqlData2 = GetData(fornitori, istanzaSql2, filtro2, 0, 10);
-        }
-
-        public static List<T> GetData<T>(
-            DbContext db,
-            Microsoft.EntityFrameworkCore.DbSet<T> _,
-            List<FilterItem> filtri,
-            int skip = 0,
-            int size = 10000) where T : class
-        {
-            var q = db.Set<T>()
-            .FilterBy(filtri)
-            .Skip(skip + 1)
-            .Take(size);
-
-            var qs = q.ToQueryString();
-
-            return q.ToList();
+            var ttt = Newtonsoft.Json.JsonConvert.SerializeObject(dt);
         }
     }
 }

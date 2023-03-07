@@ -22,7 +22,10 @@ namespace FF3DContexts.OracleModels
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseOracle("DATA SOURCE=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=ora11quality.intra.manutencoop.it)(PORT=1521))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME = MP2T)));USER ID=MP2; Password=MP2;");
+                optionsBuilder
+                    .UseOracle("DATA SOURCE=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=ora11quality.intra.manutencoop.it)(PORT=1521))(CONNECT_DATA=(SERVER = DEDICATED)(SERVICE_NAME = MP2T)));USER ID=MP2; Password=MP2;",
+                        x => x.UseOracleSQLCompatibility("11")
+                    );
             }
         }
 
