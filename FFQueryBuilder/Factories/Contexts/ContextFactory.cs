@@ -5,15 +5,12 @@ using System.Linq;
 
 namespace FFQueryBuilder.Context
 {
-    //public interface IDbContextFactory
-    //{
-    //    DbContext GetDbContext(string dbContextName);
-    //    void AddDbContext(string dbContextName, DbContext context);
-    //}
-
     public class DbContextFactory 
     {
+        private static readonly Lazy<DbContextFactory> _lazy = new Lazy<DbContextFactory>(() => new DbContextFactory());
         private static readonly IDictionary<string, DbContext> _dbContexts = new Dictionary<string,DbContext>();
+
+        public static DbContextFactory Instance => _lazy.Value;
 
         private DbContextFactory()
         {

@@ -1,17 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Internal;
-using System.Data.Entity;
 using FFQueryBuilder;
 using FFQueryBuilder.Context;
-using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 using FF3DContexts.SqlModels;
 using FF3DContexts.OracleModels;
 using FFQueryBuilder.Models;
 using FFQueryBuilder.DataAccess;
-using System.Reflection;
 
 namespace FFQueryBuilderClient
 {
@@ -99,29 +94,15 @@ namespace FFQueryBuilderClient
 
             // I modelli dei db li passo nel client avendo un riferimento alla dll apposita per cliente
 
+
+            // CONFIG WEBAPI
             var whatInside = DbContextFactory.AddDbContext("SqlServer", new FORNITORIContext());
             Console.WriteLine(whatInside.ToFormattedString());
-
             Console.WriteLine();
-
             whatInside = DbContextFactory.AddDbContext("Oracle", new ModelContext());
             Console.WriteLine(whatInside.ToFormattedString());
 
-            var fornitori = DbContextFactory.GetDbContext("SqlServer");
-            var mp2 = DbContextFactory.GetDbContext("Oracle");
-
-            var dbSets = fornitori.GetType().GetProperties()
-                .Where(prop => prop.PropertyType.IsGenericType && prop.PropertyType.Name.ToLower().Contains("dbset"))
-                .Select(ptype => ptype.PropertyType.GetGenericArguments()[0])
-                .ToList();
-
-            var mp2dbSets = mp2.GetType().GetProperties()
-                .Where(prop => prop.PropertyType.IsGenericType && prop.PropertyType.Name.ToLower().Contains("dbset"))
-                .Select(ptype => ptype.PropertyType.GetGenericArguments()[0])
-                .ToList();
-
-            dbSets.AddRange(mp2dbSets);
-
+            // CHIAMATA
             var pageDto = new Paging();
             pageDto.Filters = new List<FilterItem>()
                 {
@@ -148,7 +129,8 @@ namespace FFQueryBuilderClient
 
             IPaging data = new PagingQuery();
 
-            var dt = data.GetData(mp2, dbSets, "Woreq", pageDto);
+            // GetData -> "SqlServer", "Woreq", pageDto
+            var dt = data.GetData("Oracle", "Woreq", pageDto);
 
             var ttt = Newtonsoft.Json.JsonConvert.SerializeObject(dt);
         }
