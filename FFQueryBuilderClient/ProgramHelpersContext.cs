@@ -7,6 +7,7 @@ using FF3DContexts.SqlModels;
 using FF3DContexts.OracleModels;
 using FFQueryBuilder.Models;
 using FFQueryBuilder.DataAccess;
+using System.Reflection;
 
 namespace FFQueryBuilderClient
 {
@@ -94,45 +95,26 @@ namespace FFQueryBuilderClient
 
             // I modelli dei db li passo nel client avendo un riferimento alla dll apposita per cliente
 
-
-            // CONFIG WEBAPI
-            var whatInside = DbContextFactory.AddDbContext("SqlServer", new FORNITORIContext());
-            Console.WriteLine(whatInside.ToFormattedString());
-            Console.WriteLine();
-            whatInside = DbContextFactory.AddDbContext("Oracle", new ModelContext());
-            Console.WriteLine(whatInside.ToFormattedString());
-
-            // CHIAMATA
-            var pageDto = new Paging();
-            pageDto.Filters = new List<FilterItem>()
-                {
-                    new FilterItem()
-                    {
-                        Field = "SITEID",
-                        Value = "TESTCC",
-                        Operator = CompareOperator.Uguale
-                    },
-                    new FilterItem()
-                    {
-                        Field = "TASKNUM",
-                        Value = "AAAQ",
-                        Operator =  CompareOperator.Uguale
-                    }
-                };
-            pageDto.Order = new OrderItem()
-            {
-                Field = "REQUESTNUM",
-                TypeOfOrder = OrderType.Ascendente
-            };
-            pageDto.CurrentPage = 1;
-            pageDto.ItemPerPage = 5;
-
-            IPaging data = new PagingQuery();
-
-            // GetData -> "SqlServer", "Woreq", pageDto
-            var dt = data.GetData("Oracle", "Woreq", pageDto);
-
-            var ttt = Newtonsoft.Json.JsonConvert.SerializeObject(dt);
+            // ******
+            // Vedere API GetDataController
+            // ******
         }
+
+        public static void DynamicContextCreation()
+        {
+
+        }
+
+
+        // Cast dinamico 
+        public static void DynamicCast()
+        {
+
+        }
+
+        //public static T Cast<T>(this  object obj ) where T : class
+        //{
+
+        //}
     }
 }

@@ -21,8 +21,8 @@ namespace FFQueryBuilderClient
                 //ProgramHelpers.SqlDataTypeQuery(ctx);
                 //ProgramHelpers.ListFilter();
 
-
-                ProgramHelpersContext.SimpleCall();
+                //ProgramHelpersContext.SimpleCall();
+                ProgramHelpersContext.DynamicCast();
 
                 Console.ReadKey();
             }
