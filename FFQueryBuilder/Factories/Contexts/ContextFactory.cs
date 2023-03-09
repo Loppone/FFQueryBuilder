@@ -1,14 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FFQueryBuilder.Models.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace FFQueryBuilder.Context
 {
-    public class DbContextFactory 
+    public class DbContextFactory
     {
         private static readonly Lazy<DbContextFactory> _lazy = new Lazy<DbContextFactory>(() => new DbContextFactory());
-        private static readonly IDictionary<string, DbContext> _dbContexts = new Dictionary<string,DbContext>();
+        private static readonly IDictionary<string, DbContext> _dbContexts = new Dictionary<string, DbContext>();
 
         public static DbContextFactory Instance => _lazy.Value;
 
@@ -35,6 +36,11 @@ namespace FFQueryBuilder.Context
 
             _dbContexts.Add(new KeyValuePair<string, DbContext>(dbContextName, context));
 
+            return _dbContexts;
+        }
+
+        internal static IDictionary<string, DbContext> GetAll()
+        {
             return _dbContexts;
         }
     }

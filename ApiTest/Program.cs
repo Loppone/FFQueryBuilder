@@ -1,5 +1,7 @@
+using AutoMapper;
 using FF3DContexts.OracleModels;
 using FF3DContexts.SqlModels;
+using FFQueryBuilder.AutoMapperProfiles;
 using FFQueryBuilder.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +38,9 @@ builder.Services.AddSingleton<DbContextFactory>(x =>
 
 DbContextFactory.AddDbContext("SqlServer", new FORNITORIContext());
 DbContextFactory.AddDbContext("Oracle", new ModelContext());
+
+
+builder.Services.AddAutoMapper(typeof(ContextProfile).Assembly);
 
 
 var app = builder.Build();

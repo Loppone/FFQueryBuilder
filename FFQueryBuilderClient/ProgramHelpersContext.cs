@@ -1,13 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
+﻿using FF3DContexts.OracleModels;
+using FF3DContexts.SqlModels;
 using FFQueryBuilder;
 using FFQueryBuilder.Context;
-using FF3DContexts.SqlModels;
-using FF3DContexts.OracleModels;
-using FFQueryBuilder.Models;
-using FFQueryBuilder.DataAccess;
-using System.Reflection;
+using System;
 
 namespace FFQueryBuilderClient
 {
@@ -100,21 +95,53 @@ namespace FFQueryBuilderClient
             // ******
         }
 
+        public static void GetContextsConfiguration()
+        {
+            // Simulazione config in startup delle web api
+            DbContextFactory.AddDbContext("SqlServer", new FORNITORIContext());
+            DbContextFactory.AddDbContext("Oracle", new ModelContext());
+
+            var r = DbContextHelper.GetConfiguredContexts();
+        }
+
+        public static void GetTableInfo()
+        {
+            using (var context = new ModelContext())
+            {
+                var temp = context.Model.GetEntityTypes();
+
+                var columns = context.Model.FindEntityType("FF3DContexts.OracleModels.Woreq").GetProperties();
+                foreach (var column in columns)
+                {
+                    var columnName = column.Name;
+                    var columnType = column.GetTypeMapping().ClrType.Name; // column.ClrType.Name;
+                    var columnNullable = column.IsNullable;
+                    var columnPK = column.IsPrimaryKey();
+                    var columnLength = column.GetMaxLength();
+                    Console.WriteLine($"{columnName}: {columnType} - Nullable: {columnNullable} - PK: {columnPK} - Length: {columnLength}");
+                }
+            }
+
+        }
+
         public static void DynamicContextCreation()
         {
-
+            //var scaffolder = CreateMssqlScaffolder();
         }
 
-
-        // Cast dinamico 
-        public static void DynamicCast()
-        {
-
-        }
-
-        //public static T Cast<T>(this  object obj ) where T : class
-        //{
-
-        //}
+        //private static object CreateMssqlScaffolder() =>
+        //    new ServiceCollection()
+        //    .AddEntityFrameworkSqlServer()
+        //    .AddLogging()
+        //    //.AddEntityFrameworkDesignTimeServices();
+        //    .AddSingleton<LoggingDefinitions, SqlServerLoggingDefinitions>()
+        //    .AddSingleton<IRelationalTypeMappingSource, SqlServerTypeMappingSource>()
+        //    .AddSingleton<IAnnotationCodeGenerator, AnnotationCodeGenerator>()
+        //    .AddSingleton<IDatabaseModelFactory, SqlServerDatabaseModelFactory>()
+        //    .AddSingleton<IProviderConfigurationCodeGenerator, SqlServerCodeGenerator>()
+        //    //.AddSingleton<IScaffoldingModelFactory, RelationalScaffoldingModelFactory>()
+        //    //.AddSingleton<IPluralizer, Bricelam.EntityFrameworkCore.Design.Pluralizer>()
+        //    .BuildServiceProvider()
+        //    .GetRequiredService<ScaffoldingDbContext>();
     }
 }

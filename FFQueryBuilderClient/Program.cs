@@ -1,9 +1,4 @@
-﻿using FFQueryBuilder;
-using FFQueryBuilderClient.Models;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 
 namespace FFQueryBuilderClient
 {
@@ -11,21 +6,27 @@ namespace FFQueryBuilderClient
     {
         static void Main(string[] args)
         {
-            using (var ctx = new FORNITORIContext())
-            {
-                Console.Clear();
+            
 
-                //ProgramHelpers.SimpleQuery(ctx);
-                //ProgramHelpers.SimpleQueryDateBetween(ctx);
-                //ProgramHelpers.QueryWithSelectFields(ctx);
-                //ProgramHelpers.SqlDataTypeQuery(ctx);
-                //ProgramHelpers.ListFilter();
+            Console.Clear();
 
-                //ProgramHelpersContext.SimpleCall();
-                ProgramHelpersContext.DynamicCast();
+            //using (var ctx = new FORNITORIContext())
+            //{
 
-                Console.ReadKey();
-            }
+            //    //ProgramHelpers.SimpleQuery(ctx);
+            //    //ProgramHelpers.SimpleQueryDateBetween(ctx);
+            //    //ProgramHelpers.QueryWithSelectFields(ctx);
+            //    //ProgramHelpers.SqlDataTypeQuery(ctx);
+            //}
+
+            //    //ProgramHelpersContext.SimpleCall();
+            //    //ProgramHelpers.ListFilter();
+
+            //ProgramHelpersContext.GetContextsConfiguration();
+            
+            ProgramHelpersContext.GetTableInfo();
+
+            Console.ReadKey();
         }
     }
 }

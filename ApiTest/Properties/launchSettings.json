@@ -3,6 +3,10 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/MotorottoApi",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:18174",
       "sslPort": 0
@@ -10,11 +14,11 @@
   },
   "profiles": {
     "ApiTest": {
-      "commandName": "Project",
+      "commandName": "IIS",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
+      //"launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5079",
+      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
