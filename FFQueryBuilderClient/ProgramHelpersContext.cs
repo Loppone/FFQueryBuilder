@@ -2,6 +2,8 @@
 using FF3DContexts.SqlModels;
 using FFQueryBuilder;
 using FFQueryBuilder.Context;
+using FFQueryBuilder.EntityBuilder;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace FFQueryBuilderClient
@@ -10,6 +12,33 @@ namespace FFQueryBuilderClient
 
     internal static class ProgramHelpersContext
     {
+        public static void InitializeProgram()
+        {
+            // Simulazione config in startup delle web api
+            DbContextFactory.Instance.AddDbContext("SqlServer", new FORNITORIContext());
+            DbContextFactory.Instance.AddDbContext("Oracle", new ModelContext());
+        }
+
+        internal static void CreateEntity()
+        {
+            var builder = new EntityBuilder(/*"SqlServer",*/ "FrnUtenti");
+            builder.Properties = new System.Collections.Generic.Dictionary<string, object>();
+            builder.Properties.Add("Userad", "mbertoli");
+            builder.Properties.Add("LivelloAutorizzazione", (short)1);
+            builder.Properties.Add("Nomecognome", "Max Bertoli");
+            builder.Properties.Add("Visualizzareport", false);
+
+            var myObject = builder.Build();
+
+            var ctx = DbContextFactory.Instance.GetDbContext("SqlServer");
+            var dbSet = DbContextHelper.GetDbSet(ctx, "FrnUtenti");
+
+            Add(ctx, dbSet, myObject);
+
+            ctx.SaveChanges();
+        }
+
+
         //public static void SimpleCall()
         //{
         //    // Connessione al database SQL Server
@@ -97,10 +126,6 @@ namespace FFQueryBuilderClient
 
         public static void GetContextsConfiguration()
         {
-            // Simulazione config in startup delle web api
-            DbContextFactory.Instance.AddDbContext("SqlServer", new FORNITORIContext());
-            DbContextFactory.Instance.AddDbContext("Oracle", new ModelContext());
-
             var r = DbContextHelper.GetConfiguredContexts();
         }
 
@@ -127,6 +152,33 @@ namespace FFQueryBuilderClient
         public static void DynamicContextCreation()
         {
             //var scaffolder = CreateMssqlScaffolder();
+        }
+
+        internal static void AddEntity()
+        {
+            var ctx = DbContextFactory.Instance.GetDbContext("SqlServer");
+            var dbSet = DbContextHelper.GetDbSet(ctx, "FrnUtenti");
+
+            // Creare un nuovo oggetto FrnUtenti dinamicamente
+            var entity = Activator.CreateInstance(dbSet.GetType().GetGenericArguments()[0]);
+            var dynaType = entity.GetType();
+
+            dynaType.GetProperty("Userad").SetValue(entity, "mbertoli");
+            // Occhio al tipo: bisogna castare sul tipo corretto. In questo caso 1 è Int32, mentre la proprietà è short?
+            // Quindi quando si imposta il valore partendo da una stringa bisogna convertirlo nel tipo di dato della classe
+            dynaType.GetProperty("LivelloAutorizzazione").SetValue(entity, (short)1);
+            dynaType.GetProperty("Nomecognome").SetValue(entity, "Max Bertoli");
+            dynaType.GetProperty("Visualizzareport").SetValue(entity, false);
+
+            Add(ctx, dbSet, entity);
+
+            ctx.SaveChanges();
+        }
+
+        private static void Add<T>(DbContext db, DbSet<T> _, T entity) where T : class
+        {
+            var q = db.Set<T>()
+                .Add(entity);
         }
 
         //private static object CreateMssqlScaffolder() =>

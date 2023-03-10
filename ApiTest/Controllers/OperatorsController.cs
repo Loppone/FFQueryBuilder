@@ -1,6 +1,5 @@
 ﻿using FFQueryBuilder;
 using FFQueryBuilder.Helpers;
-using FFQueryBuilder.Models.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using System.Net;

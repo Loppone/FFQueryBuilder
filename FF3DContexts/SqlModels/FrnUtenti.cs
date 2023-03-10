@@ -12,5 +12,10 @@ namespace FF3DContexts.SqlModels
         public short? LivelloAutorizzazione { get; set; }
         public string Nomecognome { get; set; }
         public bool? Visualizzareport { get; set; }
+
+        public FrnUtenti()
+        {
+
+        }
     }
 }

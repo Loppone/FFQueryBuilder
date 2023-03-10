@@ -23,7 +23,7 @@ namespace FF3DContexts.SqlModels
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=RKPSQL01PRD.intra.manutencoop.it\\PRD;Initial Catalog=FORNITORI;Persist Security Info=True;connect timeout=3600;User ID=svc_fornitori;Password=srdfHJ45/");
+                optionsBuilder.UseSqlServer("Data Source=RKPSQL01DEV.intra.manutencoop.tst\\DEV;Initial Catalog=FORNITORI;Persist Security Info=True;User ID=svc_fornitori;Password=espfLO77!");
             }
         }
 

@@ -54,16 +54,18 @@ namespace FFQueryBuilder
             return Activator.CreateInstance(intenalType, context, dbSet.Name);
         }
 
-        private static Dictionary<string, string> SetInternalDbSetNames(IList<Type> dbSets)
+        internal static dynamic GetDbSet(string contextName, string entityName)
         {
-            var internalNames = new Dictionary<string, string>();
+            var context = DbContextFactory.Instance.GetDbContext(contextName);
 
-            foreach (var dbSet in dbSets)
-            {
-                internalNames.Add(dbSet.Name, dbSet.FullName);
-            }
+            return GetDbSet(context, entityName);
+        }
 
-            return internalNames;
+        internal static dynamic GetEntity(string contextName, string entityName)
+        {
+            var dbSet = GetDbSet(contextName, entityName);
+            
+            return dbSet.FullName;
         }
 
         private static IList<Type> ConfiguredDbSets(DbContext context)
