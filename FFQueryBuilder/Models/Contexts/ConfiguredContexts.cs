@@ -6,6 +6,5 @@ namespace FFQueryBuilder.Models.Contexts
     {
         public string ContextName { get; set; }
         public IEnumerable<string> Entities { get; set; }
-        internal Dictionary<string,string> InternalEntitiesNames { get; set; } = new Dictionary<string,string>();
-}
+    }
 }

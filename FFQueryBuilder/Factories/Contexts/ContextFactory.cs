@@ -1,8 +1,6 @@
-﻿using FFQueryBuilder.Models.Contexts;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace FFQueryBuilder.Context
 {
@@ -17,7 +15,7 @@ namespace FFQueryBuilder.Context
         {
         }
 
-        public static DbContext GetDbContext(string databaseAlias)
+        public DbContext GetDbContext(string databaseAlias)
         {
             if (!_dbContexts.TryGetValue(databaseAlias, out DbContext dbContext))
             {
@@ -27,7 +25,7 @@ namespace FFQueryBuilder.Context
             return dbContext;
         }
 
-        public static IDictionary<string, DbContext> AddDbContext(string dbContextName, DbContext context)
+        public IDictionary<string, DbContext> AddDbContext(string dbContextName, DbContext context)
         {
             if (_dbContexts.ContainsKey(dbContextName))
             {
@@ -39,7 +37,7 @@ namespace FFQueryBuilder.Context
             return _dbContexts;
         }
 
-        internal static IDictionary<string, DbContext> GetAll()
+        internal IDictionary<string, DbContext> GetAll()
         {
             return _dbContexts;
         }

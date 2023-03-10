@@ -7,7 +7,9 @@ namespace FFQueryBuilder.AutoMapperProfiles
     {
         public ContextProfile()
         {
-            CreateMap<Microsoft.EntityFrameworkCore.Metadata.IProperty, ModelInfo>();
+            CreateMap<Microsoft.EntityFrameworkCore.Metadata.IProperty, ModelInfo>()
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.GetTypeMapping().ClrType.Name))
+                .ForMember(dest => dest.MaxLength, opt => opt.MapFrom(src => src.GetMaxLength()));
         }
     }
 }

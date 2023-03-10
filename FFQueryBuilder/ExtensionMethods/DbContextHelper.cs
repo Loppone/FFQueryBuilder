@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using FFQueryBuilder.Context;
+﻿using FFQueryBuilder.Context;
 using FFQueryBuilder.Factories.Singleton;
 using FFQueryBuilder.Models.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -17,32 +15,35 @@ namespace FFQueryBuilder
         {
             var configuration = new List<ConfiguredContexts>();
 
-            var r = DbContextFactory.GetAll();
+            var contexts = DbContextFactory.Instance.GetAll();
 
-            foreach (var context in r)
+            foreach (var context in contexts)
             {
-                var dbSets = ConfiguredDbSets(r.FirstOrDefault(x => x.Key == context.Key).Value);
+                var dbSets = ConfiguredDbSets(contexts.FirstOrDefault(x => x.Key == context.Key).Value);
 
                 configuration.Add(new ConfiguredContexts
                 {
                     ContextName = context.Key,
-                    Entities = dbSets.Select(x => x.Name),
-                    InternalEntitiesNames = SetInternalDbSetNames(dbSets)
+                    Entities = dbSets.Select(x => x.Name)
                 });
             }
 
             return configuration;
         }
-        
+
         public static List<ModelInfo> EntityInformation(string contextName, string entityName)
         {
-            var context = DbContextFactory.GetDbContext(contextName);
-            var columns = context.Model.FindEntityType(entityName).GetProperties().ToList();
+            var context = DbContextFactory.Instance.GetDbContext(contextName);
+
+            var internalEntityName = ConfiguredDbSets(context)
+                .FirstOrDefault(x => x.Name == entityName);
+
+            var columns = context.Model.FindEntityType(internalEntityName).GetProperties().ToList();
 
             return AutoMapperSingleton.Instance.Mapper
                 .Map<List<Microsoft.EntityFrameworkCore.Metadata.IProperty>, List<ModelInfo>>(columns);
         }
-        
+
         internal static dynamic GetDbSet(DbContext context, string table)
         {
             var dbSet = ConfiguredDbSets(context)
@@ -52,7 +53,7 @@ namespace FFQueryBuilder
 
             return Activator.CreateInstance(intenalType, context, dbSet.Name);
         }
-        
+
         private static Dictionary<string, string> SetInternalDbSetNames(IList<Type> dbSets)
         {
             var internalNames = new Dictionary<string, string>();

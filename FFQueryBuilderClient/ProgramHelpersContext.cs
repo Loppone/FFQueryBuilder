@@ -98,8 +98,8 @@ namespace FFQueryBuilderClient
         public static void GetContextsConfiguration()
         {
             // Simulazione config in startup delle web api
-            DbContextFactory.AddDbContext("SqlServer", new FORNITORIContext());
-            DbContextFactory.AddDbContext("Oracle", new ModelContext());
+            DbContextFactory.Instance.AddDbContext("SqlServer", new FORNITORIContext());
+            DbContextFactory.Instance.AddDbContext("Oracle", new ModelContext());
 
             var r = DbContextHelper.GetConfiguredContexts();
         }
