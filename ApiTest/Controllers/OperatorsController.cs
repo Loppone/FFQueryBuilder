@@ -1,4 +1,5 @@
 ﻿using FFQueryBuilder;
+using FFQueryBuilder.Helpers;
 using FFQueryBuilder.Models.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
@@ -8,14 +9,14 @@ namespace ApiTest.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TableInfoController : ControllerBase
+    public class OperatorsController : ControllerBase
     {
         [HttpGet]
-        [SwaggerResponse(HttpStatusCode.OK, typeof(IEnumerable<ModelInfo>), Description = "Successfull operation")]
+        [SwaggerResponse(HttpStatusCode.OK, typeof(Dictionary<string, IEnumerable<CompareOperator>>), Description = "Successfull operation")]
         [SwaggerResponse(HttpStatusCode.InternalServerError, typeof(string), Description = "Internal Server Error")]
-        public ActionResult<IEnumerable<ConfiguredContexts>> Get(string db, string table)
+        public ActionResult<Dictionary<string, IEnumerable<CompareOperator>>> Get()
         {
-            return Ok(DbContextHelper.EntityInformation(db, table));
-        }
+            return Ok(OperatorHelpers.OperatorsByType());
+        }  
     }
 }

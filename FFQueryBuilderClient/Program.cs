@@ -23,8 +23,10 @@ namespace FFQueryBuilderClient
             //    //ProgramHelpers.ListFilter();
 
             //ProgramHelpersContext.GetContextsConfiguration();
-            
-            ProgramHelpersContext.GetTableInfo();
+
+            //ProgramHelpersContext.GetTableInfo();
+
+            var c = FFQueryBuilder.Helpers.OperatorHelpers.OperatorsByType();
 
             Console.ReadKey();
         }

@@ -31,7 +31,7 @@ namespace FFQueryBuilder
             return configuration;
         }
 
-        public static List<ModelInfo> EntityInformation(string contextName, string entityName)
+        public static IEnumerable<ModelInfo> EntityInformation(string contextName, string entityName)
         {
             var context = DbContextFactory.Instance.GetDbContext(contextName);
 

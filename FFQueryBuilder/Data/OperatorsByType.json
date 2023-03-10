@@ -1,0 +1,47 @@
+﻿{
+  "string": [
+    "Uguale",
+    "Diverso",
+    "Contiene"
+  ],
+  "int": [
+    "Uguale",
+    "Diverso",
+    "Maggiore",
+    "Minore",
+    "MaggioreUguale",
+    "MinoreUguale",
+    "IsNull",
+    "IsNotNull"
+  ],
+  "float": [
+    "Uguale",
+    "Diverso",
+    "Maggiore",
+    "Minore",
+    "MaggioreUguale",
+    "MinoreUguale",
+    "IsNull",
+    "IsNotNull"
+  ],
+  "decimal": [
+    "Uguale",
+    "Diverso",
+    "Maggiore",
+    "Minore",
+    "MaggioreUguale",
+    "MinoreUguale",
+    "IsNull",
+    "IsNotNull"
+  ],
+  "DateTime": [
+    "Uguale",
+    "Diverso",
+    "Maggiore",
+    "Minore",
+    "MaggioreUguale",
+    "MinoreUguale",
+    "IsNull",
+    "IsNotNull"
+  ]
+}
