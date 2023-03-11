@@ -21,26 +21,20 @@ namespace FFQueryBuilder.EntityBuilder
             }
         }
 
-        private static T ConvertToNullable<T>(object value, T destinationTypeObjectPlaceholder)
+        private static T ConvertToNullable<T>(object value, T _)
         {
             if (value == null || value == DBNull.Value)
             {
                 return default(T);
             }
 
-            var underlyingType = Nullable.GetUnderlyingType(destinationTypeObjectPlaceholder.GetType());
+            var underlyingType = Nullable.GetUnderlyingType(_.GetType());
             if (underlyingType != null)
             {
-                var x1 = (T)System.Convert.ChangeType(value, underlyingType);
-                var x1a = x1.GetType();
-
-                return x1;
+                return (T)System.Convert.ChangeType(value, underlyingType);
             }
 
-            var x2 = (T)System.Convert.ChangeType(value, typeof(T));
-            var x2a = x2.GetType();
-
-            return x2;
+            return (T)System.Convert.ChangeType(value, typeof(T));
         }
     }
 }
