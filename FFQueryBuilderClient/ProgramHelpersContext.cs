@@ -21,12 +21,17 @@ namespace FFQueryBuilderClient
 
         internal static void CreateEntity()
         {
-            var builder = new EntityBuilder(/*"SqlServer",*/ "FrnUtenti");
-            builder.Properties = new System.Collections.Generic.Dictionary<string, object>();
-            builder.Properties.Add("Userad", "mbertoli");
-            builder.Properties.Add("LivelloAutorizzazione", (short)1);
-            builder.Properties.Add("Nomecognome", "Max Bertoli");
-            builder.Properties.Add("Visualizzareport", false);
+            var builder = new EntityBuilder(new TypeConverter());
+            builder.EntityName = "FrnUtenti";
+
+
+            builder.SourceFields = new System.Collections.Generic.Dictionary<string, object>
+            {
+                { "Userad", null },
+                { "LivelloAutorizzazione", 1 },
+                { "Nomecognome", "Max Bertoli" },
+                { "Visualizzareport", false }
+            };
 
             var myObject = builder.Build();
 
@@ -37,57 +42,6 @@ namespace FFQueryBuilderClient
 
             ctx.SaveChanges();
         }
-
-
-        //public static void SimpleCall()
-        //{
-        //    // Connessione al database SQL Server
-        //    var connectionString = "Data Source=RKPSQL01DEV.intra.manutencoop.tst\\DEV;Initial Catalog=FORNITORI;Persist Security Info=True;User ID=svc_fornitori;Password=espfLO77!";
-        //    var connection = new SqlConnection(connectionString);
-
-        //    // Query per selezionare le tabelle del database
-        //    var commandText = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
-        //    var command = new SqlCommand(commandText, connection);
-        //    connection.Open();
-        //    var reader = command.ExecuteReader();
-
-        //    while (reader.Read())
-        //    {
-        //        var tableName = reader.GetString(0);
-
-        //        // Query per selezionare le colonne della tabella
-        //        var columnsCommandText = "SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @tableName";
-        //        var columnsCommand = new SqlCommand(columnsCommandText, connection);
-        //        columnsCommand.Parameters.AddWithValue("@tableName", tableName);
-
-        //        // Chiusura del lettore dati corrente prima di eseguire la nuova query
-        //        //reader.Close();
-
-        //        var columnsReader = columnsCommand.ExecuteReader();
-
-        //        Console.WriteLine($"Tabella: {tableName}");
-        //        Console.WriteLine("----------------------------------");
-
-        //        while (columnsReader.Read())
-        //        {
-        //            var columnName = columnsReader.GetString(0);
-        //            var dataType = columnsReader.GetString(1);
-        //            var isNullable = columnsReader.GetString(2) == "YES";
-
-        //            Console.WriteLine($"Nome colonna: {columnName}");
-        //            Console.WriteLine($"Tipo di dati: {dataType}");
-        //            Console.WriteLine($"Nullable: {isNullable}");
-        //            Console.WriteLine("----------------------------------");
-        //        }
-
-        //        columnsReader.Close();
-        //    }
-
-        //    reader.Close();
-        //    connection.Close();
-
-        //    Console.ReadLine();
-        //}
 
         public static void SimpleCall()
         {
@@ -167,7 +121,7 @@ namespace FFQueryBuilderClient
             // Occhio al tipo: bisogna castare sul tipo corretto. In questo caso 1 è Int32, mentre la proprietà è short?
             // Quindi quando si imposta il valore partendo da una stringa bisogna convertirlo nel tipo di dato della classe
             dynaType.GetProperty("LivelloAutorizzazione").SetValue(entity, (short)1);
-            dynaType.GetProperty("Nomecognome").SetValue(entity, "Max Bertoli");
+            dynaType.GetProperty("Nomecognome").SetValue(entity, null);
             dynaType.GetProperty("Visualizzareport").SetValue(entity, false);
 
             Add(ctx, dbSet, entity);

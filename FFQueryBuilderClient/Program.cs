@@ -25,7 +25,7 @@ namespace FFQueryBuilderClient
 
             ProgramHelpersContext.CreateEntity();
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }

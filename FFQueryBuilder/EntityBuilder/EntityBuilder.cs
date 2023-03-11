@@ -1,7 +1,6 @@
 ﻿using FFQueryBuilder.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace FFQueryBuilder.EntityBuilder
@@ -11,37 +10,32 @@ namespace FFQueryBuilder.EntityBuilder
     /// </summary>
     internal class EntityBuilder : IEntityBuilder
     {
-        private readonly string _entityName;
-        public Dictionary<string,object> Properties { get; set; }
+        private readonly ITypeConverter _typeConverter;
 
-        public EntityBuilder(string entityName)
+        public string EntityName { get; set; }
+        public Dictionary<string, object> SourceFields { get; set; }
+
+        public EntityBuilder(ITypeConverter typeConverter)
         {
-            _entityName = entityName;
+            _typeConverter = typeConverter;
         }
 
         public dynamic Build()
         {
-            var entityType = TypeHelper.GetTypeByName(_entityName);
+            var entityType = TypeHelper.GetTypeByName(EntityName);
             var obj = Activator.CreateInstance(entityType);
 
-            foreach (var property in Properties)
+            foreach (var field in SourceFields)
             {
-                PropertyInfo propertyInfo = entityType.GetProperty(property.Key);
+                PropertyInfo propertyInfo = entityType.GetProperty(field.Key);
                 if (propertyInfo != null && propertyInfo.CanWrite)
                 {
-                    //object value = ConvertValue(property.Value, propertyInfo.PropertyType);
-                    propertyInfo.SetValue(obj, property.Value, null);
+                    var value = _typeConverter.Convert(field.Value, propertyInfo.PropertyType);
+                    propertyInfo.SetValue(obj, value, null);
                 }
             }
 
-
-
             return obj;
         }
-    }
-
-    internal interface IEntityBuilder
-    {
-        dynamic Build();
     }
 }
