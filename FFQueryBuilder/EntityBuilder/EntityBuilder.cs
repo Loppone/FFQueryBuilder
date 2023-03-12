@@ -8,7 +8,7 @@ namespace FFQueryBuilder.EntityBuilder
     /// <summary>
     /// Crea un oggetto a partire da una struttura chiave/valore
     /// </summary>
-    internal class EntityBuilder : IEntityBuilder
+    public class EntityBuilder : IEntityBuilder
     {
         private readonly ITypeConverter _typeConverter;
 

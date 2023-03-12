@@ -4,7 +4,9 @@ using FFQueryBuilder;
 using FFQueryBuilder.Context;
 using FFQueryBuilder.EntityBuilder;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
+using System.Dynamic;
 
 namespace FFQueryBuilderClient
 {
@@ -21,13 +23,13 @@ namespace FFQueryBuilderClient
 
         internal static void CreateEntity()
         {
-            var builder = new EntityBuilder(new TypeConverter());
+            //var builder = new EntityBuilder(new TypeConverter());
+            var builder = new EntityBuilderSerialization();
             builder.EntityName = "FrnUtenti";
-
 
             builder.SourceFields = new System.Collections.Generic.Dictionary<string, object>
             {
-                { "Userad", null },
+                { "Userad", "mbertoli" },
                 { "LivelloAutorizzazione", 1 },
                 { "Nomecognome", "Max Bertoli" },
                 { "Visualizzareport", false }

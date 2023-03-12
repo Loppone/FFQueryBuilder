@@ -1,6 +1,6 @@
 ﻿namespace FFQueryBuilder.EntityBuilder
 {
-    internal interface IEntityBuilder
+    public interface IEntityBuilder
     {
         dynamic Build();
     }

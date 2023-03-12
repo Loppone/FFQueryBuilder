@@ -2,6 +2,7 @@ using FF3DContexts.OracleModels;
 using FF3DContexts.SqlModels;
 using FFQueryBuilder.AutoMapperProfiles;
 using FFQueryBuilder.Context;
+using FFQueryBuilder.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,9 +39,10 @@ builder.Services.AddSingleton<DbContextFactory>(x =>
 DbContextFactory.Instance.AddDbContext("SqlServer", new FORNITORIContext());
 DbContextFactory.Instance.AddDbContext("Oracle", new ModelContext());
 
-
 builder.Services.AddAutoMapper(typeof(ContextProfile).Assembly);
 
+
+builder.Services.AddTransient<IWriteableRepository, WriteRepository>();
 
 var app = builder.Build();
 
