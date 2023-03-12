@@ -1,12 +1,10 @@
 ﻿using FF3DContexts.OracleModels;
-using FF3DContexts.SqlModels;
 using FFQueryBuilder;
 using FFQueryBuilder.Context;
 using FFQueryBuilder.EntityBuilder;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Dynamic;
 
 namespace FFQueryBuilderClient
 {
@@ -17,8 +15,8 @@ namespace FFQueryBuilderClient
         public static void InitializeProgram()
         {
             // Simulazione config in startup delle web api
-            DbContextFactory.Instance.AddDbContext("SqlServer", new FORNITORIContext());
-            DbContextFactory.Instance.AddDbContext("Oracle", new ModelContext());
+            //DbContextFactory.Instance.AddDbContext("SqlServer", new FORNITORIContext());
+            //DbContextFactory.Instance.AddDbContext("Oracle", new ModelContext());
         }
 
         internal static void CreateEntity()
@@ -37,12 +35,13 @@ namespace FFQueryBuilderClient
 
             var myObject = builder.Build();
 
-            var ctx = DbContextFactory.Instance.GetDbContext("SqlServer");
-            var dbSet = DbContextHelper.GetDbSet(ctx, "FrnUtenti");
+            //var factory = new DbContextFactory(new ServiceProvider())
+            //var ctx = DbContextFactory.Instance.GetDbContext("SqlServer");
+            //var dbSet = DbContextManager.GetDbSet(ctx, "FrnUtenti");
 
-            Add(ctx, dbSet, myObject);
+            //Add(ctx, dbSet, myObject);
 
-            ctx.SaveChanges();
+            //ctx.SaveChanges();
         }
 
         public static void SimpleCall()
@@ -82,7 +81,7 @@ namespace FFQueryBuilderClient
 
         public static void GetContextsConfiguration()
         {
-            var r = DbContextHelper.GetConfiguredContexts();
+            //var r = DbContextManager.GetConfiguredContexts();
         }
 
         public static void GetTableInfo()
@@ -112,23 +111,23 @@ namespace FFQueryBuilderClient
 
         internal static void AddEntity()
         {
-            var ctx = DbContextFactory.Instance.GetDbContext("SqlServer");
-            var dbSet = DbContextHelper.GetDbSet(ctx, "FrnUtenti");
+            //var ctx = DbContextFactory.Instance.GetDbContext("SqlServer");
+            //var dbSet = DbContextManager.GetDbSet(ctx, "FrnUtenti");
 
-            // Creare un nuovo oggetto FrnUtenti dinamicamente
-            var entity = Activator.CreateInstance(dbSet.GetType().GetGenericArguments()[0]);
-            var dynaType = entity.GetType();
+            //// Creare un nuovo oggetto FrnUtenti dinamicamente
+            //var entity = Activator.CreateInstance(dbSet.GetType().GetGenericArguments()[0]);
+            //var dynaType = entity.GetType();
 
-            dynaType.GetProperty("Userad").SetValue(entity, "mbertoli");
-            // Occhio al tipo: bisogna castare sul tipo corretto. In questo caso 1 è Int32, mentre la proprietà è short?
-            // Quindi quando si imposta il valore partendo da una stringa bisogna convertirlo nel tipo di dato della classe
-            dynaType.GetProperty("LivelloAutorizzazione").SetValue(entity, (short)1);
-            dynaType.GetProperty("Nomecognome").SetValue(entity, null);
-            dynaType.GetProperty("Visualizzareport").SetValue(entity, false);
+            //dynaType.GetProperty("Userad").SetValue(entity, "mbertoli");
+            //// Occhio al tipo: bisogna castare sul tipo corretto. In questo caso 1 è Int32, mentre la proprietà è short?
+            //// Quindi quando si imposta il valore partendo da una stringa bisogna convertirlo nel tipo di dato della classe
+            //dynaType.GetProperty("LivelloAutorizzazione").SetValue(entity, (short)1);
+            //dynaType.GetProperty("Nomecognome").SetValue(entity, null);
+            //dynaType.GetProperty("Visualizzareport").SetValue(entity, false);
 
-            Add(ctx, dbSet, entity);
+            //Add(ctx, dbSet, entity);
 
-            ctx.SaveChanges();
+            //ctx.SaveChanges();
         }
 
         private static void Add<T>(DbContext db, DbSet<T> _, T entity) where T : class

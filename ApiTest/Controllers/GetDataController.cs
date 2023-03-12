@@ -9,6 +9,13 @@ namespace ApiTest.Controllers
     [ApiController]
     public class GetDataController : ControllerBase
     {
+        private readonly IPaging _pagingQuery;
+
+        public GetDataController(IPaging pagingQuery)
+        {
+            _pagingQuery = pagingQuery;
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
@@ -27,15 +34,14 @@ namespace ApiTest.Controllers
                     new FilterItem()
                     {
                         Field = "userad",
-                        Value = "sa",
+                        Value = "ber",
                         Operator = CompareOperator.Contiene
                     }
                 };
             pageDto.CurrentPage = 1;
             pageDto.ItemPerPage = 5;
 
-            IPaging data = new PagingQuery();
-            return data.GetData("SqlServer", "FrnUtenti", pageDto);
+            return _pagingQuery.GetData("SqlServer", "FrnUtenti", pageDto);
         }
 
         private dynamic? GetOracleData()
@@ -64,8 +70,7 @@ namespace ApiTest.Controllers
             pageDto.CurrentPage = 1;
             pageDto.ItemPerPage = 5;
 
-            IPaging data = new PagingQuery();
-            return data.GetData("Oracle", "Woreq", pageDto);
+            return _pagingQuery.GetData("Oracle", "Woreq", pageDto);
         }
     }
 }

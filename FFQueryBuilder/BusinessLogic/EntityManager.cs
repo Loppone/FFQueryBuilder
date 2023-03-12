@@ -7,8 +7,11 @@ namespace FFQueryBuilder.BusinessLogic
 {
     public class EntityManager
     {
-        public EntityManager(string contextName, string entityName)
+        private readonly DbContextFactory _dbContextFactory;
+
+        public EntityManager(DbContextFactory dbContextFactory, string contextName, string entityName)
         {
+            _dbContextFactory = dbContextFactory;
             ContextName = contextName;
             EntityName = entityName;
         }
@@ -21,14 +24,21 @@ namespace FFQueryBuilder.BusinessLogic
 
         public void CreateEntityInstance(Dictionary<string, object> properties)
         {
-            var builder = new EntityBuilderSerialization();
-            builder.EntityName = EntityName;
-            builder.SourceFields = properties;
+            var builder = new EntityBuilderSerialization
+            {
+                EntityName = EntityName,
+                SourceFields = properties
+            };
 
             EntityValues = builder.Build();
 
-            Context = DbContextFactory.Instance.GetDbContext(ContextName);
-            Entity = DbContextHelper.GetDbSet(Context, EntityName);
+            Context = _dbContextFactory.GetDbContext(ContextName);
+
+            // TODO
+            // Invertire la dipendenza o spostare GetDbSet
+            var cm = new DbContextManager(_dbContextFactory);
+
+            Entity = cm.GetDbSet(Context, EntityName);
         }
     }
 }

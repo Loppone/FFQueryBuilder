@@ -1,6 +1,7 @@
 ﻿using FFQueryBuilder.Context;
 using FFQueryBuilder.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,10 +9,24 @@ namespace FFQueryBuilder.DataAccess
 {
     public class PagingQuery : IPaging
     {
+        private readonly DbContextFactory _dbContextFactory;
+
+        public PagingQuery(DbContextFactory dbContextFactory)
+        {
+            _dbContextFactory = dbContextFactory;
+        }
+
+
         public dynamic GetData(string contextName, string tableName, Paging page)
         {
-            var context = DbContextFactory.Instance.GetDbContext(contextName);
-            var dbSet = DbContextHelper.GetDbSet(context, tableName);
+            var context = _dbContextFactory.GetDbContext(contextName);
+
+            // TODO
+            // Invertire la dipendenza o spostare GetDbSet
+
+            var dm = new DbContextManager(_dbContextFactory);
+
+            var dbSet = dm.GetDbSet(context, tableName);
             return GetDataInternal(context, dbSet, page);
         }
 

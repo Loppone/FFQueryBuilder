@@ -9,7 +9,6 @@ namespace FFQueryBuilder.EntityBuilder
     {
         public string EntityName { get; set; }
         public Dictionary<string, object> SourceFields { get; set; }
-        private JsonSerializerSettings _settings;
 
         public EntityBuilderSerialization()
         {

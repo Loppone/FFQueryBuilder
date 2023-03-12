@@ -10,12 +10,19 @@ namespace ApiTest.Controllers
     [ApiController]
     public class GetTablesController : ControllerBase
     {
+        private readonly IDbContextManager _contextManager;
+
+        public GetTablesController(IDbContextManager contextManager)
+        {
+            _contextManager = contextManager;
+        }
+
         [HttpGet]
         [SwaggerResponse(HttpStatusCode.OK, typeof(IEnumerable<ConfiguredContexts>), Description = "Successfull operation")]
         [SwaggerResponse(HttpStatusCode.InternalServerError, typeof(string), Description = "Internal Server Error")]
         public ActionResult<IEnumerable<ConfiguredContexts>> Get()
         {
-            return Ok(DbContextHelper.GetConfiguredContexts());
+            return Ok(_contextManager.GetConfiguredContexts());
         }  
     }
 }

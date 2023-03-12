@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FF3DContexts.OracleModels;
+using FF3DContexts.SqlModels;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -6,40 +9,31 @@ namespace FFQueryBuilder.Context
 {
     public class DbContextFactory
     {
-        private static readonly Lazy<DbContextFactory> _lazy = new Lazy<DbContextFactory>(() => new DbContextFactory());
-        private static readonly IDictionary<string, DbContext> _dbContexts = new Dictionary<string, DbContext>();
+        private readonly IServiceProvider _serviceProvider;
 
-        public static DbContextFactory Instance => _lazy.Value;
-
-        private DbContextFactory()
+        public DbContextFactory(IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider;
         }
 
-        public DbContext GetDbContext(string databaseAlias)
+
+        public DbContext GetDbContext(string contextName)
         {
-            if (!_dbContexts.TryGetValue(databaseAlias, out DbContext dbContext))
+            return contextName switch
             {
-                throw new ArgumentException($"Database alias '{databaseAlias}' non riconosciuto.");
-            }
-
-            return dbContext;
-        }
-
-        public IDictionary<string, DbContext> AddDbContext(string dbContextName, DbContext context)
-        {
-            if (_dbContexts.ContainsKey(dbContextName))
-            {
-                throw new ArgumentException($"Database '{dbContextName}' già presente.");
-            }
-
-            _dbContexts.Add(new KeyValuePair<string, DbContext>(dbContextName, context));
-
-            return _dbContexts;
+                "SqlServer" => _serviceProvider.GetService<FORNITORIContext>(),
+                "Oracle" => _serviceProvider.GetService<ModelContext>(),
+                _ => throw new ArgumentException($"Contesto '{contextName}' non trovato"),
+            };
         }
 
         internal IDictionary<string, DbContext> GetAll()
         {
-            return _dbContexts;
+            return new Dictionary<string, DbContext>()
+            {
+                { "SqlServer", _serviceProvider.GetService<FORNITORIContext>() },
+                { "Oracle", _serviceProvider.GetService<ModelContext>() }
+            };
         }
     }
 }

@@ -1,7 +1,10 @@
 using FF3DContexts.OracleModels;
 using FF3DContexts.SqlModels;
+using FFQueryBuilder;
 using FFQueryBuilder.AutoMapperProfiles;
+using FFQueryBuilder.BusinessLogic;
 using FFQueryBuilder.Context;
+using FFQueryBuilder.DataAccess;
 using FFQueryBuilder.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +18,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<FORNITORIContext>(opt =>
 {
-    opt.UseSqlServer("Data Source=RKPSQL01PRD.intra.manutencoop.it\\PRD;Initial Catalog=FORNITORI;Persist Security Info=True;connect timeout=3600;User ID=svc_fornitori;Password=srdfHJ45/",
+    opt.UseSqlServer("Data Source=RKPSQL01DEV.intra.manutencoop.tst\\DEV;Initial Catalog=FORNITORI;Persist Security Info=True;User ID=svc_fornitori;Password=espfLO77!",
         sqlOption => sqlOption.CommandTimeout(900));
 
     opt.UseLazyLoadingProxies();
@@ -29,18 +32,17 @@ builder.Services.AddDbContext<ModelContext>(opt =>
         );
 });
 
-builder.Services.AddSingleton<DbContextFactory>(x =>
-    {
-        return ActivatorUtilities.CreateInstance<DbContextFactory>(x);
-    }
-);
+//builder.Services.AddScoped<DbContextFactory>(x =>
+//    {
+//        return ActivatorUtilities.CreateInstance<DbContextFactory>(x);
+//    }
+//);
 
-
-DbContextFactory.Instance.AddDbContext("SqlServer", new FORNITORIContext());
-DbContextFactory.Instance.AddDbContext("Oracle", new ModelContext());
+builder.Services.AddScoped<DbContextFactory>();
+builder.Services.AddScoped<IDbContextManager, DbContextManager>();
+builder.Services.AddScoped<IPaging, PagingQuery>();
 
 builder.Services.AddAutoMapper(typeof(ContextProfile).Assembly);
-
 
 builder.Services.AddTransient<IWriteableRepository, WriteRepository>();
 

@@ -9,13 +9,20 @@ using System.Linq;
 
 namespace FFQueryBuilder
 {
-    public static class DbContextHelper
+    public class DbContextManager : IDbContextManager
     {
-        public static IEnumerable<ConfiguredContexts> GetConfiguredContexts()
+        private readonly DbContextFactory _dbContextFactory;
+
+        public DbContextManager(DbContextFactory dbContextFactory)
+        {
+            _dbContextFactory = dbContextFactory;
+        }
+
+        public IEnumerable<ConfiguredContexts> GetConfiguredContexts()
         {
             var configuration = new List<ConfiguredContexts>();
 
-            var contexts = DbContextFactory.Instance.GetAll();
+            var contexts = _dbContextFactory.GetAll();
 
             foreach (var context in contexts)
             {
@@ -31,9 +38,9 @@ namespace FFQueryBuilder
             return configuration;
         }
 
-        public static IEnumerable<ModelInfo> EntityInformation(string contextName, string entityName)
+        public IEnumerable<ModelInfo> EntityInformation(string contextName, string entityName)
         {
-            var context = DbContextFactory.Instance.GetDbContext(contextName);
+            var context = _dbContextFactory.GetDbContext(contextName);
 
             var internalEntityName = ConfiguredDbSets(context)
                 .FirstOrDefault(x => x.Name == entityName);
@@ -44,7 +51,7 @@ namespace FFQueryBuilder
                 .Map<List<Microsoft.EntityFrameworkCore.Metadata.IProperty>, List<ModelInfo>>(columns);
         }
 
-        internal static dynamic GetDbSet(DbContext context, string table)
+        internal dynamic GetDbSet(DbContext context, string table)
         {
             var dbSet = ConfiguredDbSets(context)
                 .FirstOrDefault(x => x.Name == table);
@@ -54,21 +61,21 @@ namespace FFQueryBuilder
             return Activator.CreateInstance(intenalType, context, dbSet.Name);
         }
 
-        internal static dynamic GetDbSet(string contextName, string entityName)
+        internal dynamic GetDbSet(string contextName, string entityName)
         {
-            var context = DbContextFactory.Instance.GetDbContext(contextName);
+            var context = _dbContextFactory.GetDbContext(contextName);
 
             return GetDbSet(context, entityName);
         }
 
-        internal static dynamic GetEntity(string contextName, string entityName)
+        internal dynamic GetEntity(string contextName, string entityName)
         {
             var dbSet = GetDbSet(contextName, entityName);
             
             return dbSet.FullName;
         }
 
-        private static IList<Type> ConfiguredDbSets(DbContext context)
+        public IList<Type> ConfiguredDbSets(DbContext context)
         {
             return ConfiguredDbSetsQuery(context)
                 .ToList();
@@ -80,5 +87,12 @@ namespace FFQueryBuilder
                 .Where(prop => prop.PropertyType.IsGenericType && prop.PropertyType.Name.ToLower().Contains("dbset"))
                 .Select(ptype => ptype.PropertyType.GetGenericArguments()[0]);
         }
+    }
+
+    public interface IDbContextManager
+    {
+        IEnumerable<ConfiguredContexts> GetConfiguredContexts();
+        IEnumerable<ModelInfo> EntityInformation(string contextName, string entityName);
+      //  IList<Type> ConfiguredDbSets(DbContext context);
     }
 }

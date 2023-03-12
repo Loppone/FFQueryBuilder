@@ -27,6 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FF3DContexts\FF3DContexts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Data\OperatorsByType.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
