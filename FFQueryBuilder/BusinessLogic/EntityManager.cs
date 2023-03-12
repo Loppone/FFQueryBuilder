@@ -7,10 +7,12 @@ namespace FFQueryBuilder.BusinessLogic
 {
     public class EntityManager
     {
+        private readonly IDbContextManager _dbContextManager;
         private readonly DbContextFactory _dbContextFactory;
 
-        public EntityManager(DbContextFactory dbContextFactory, string contextName, string entityName)
+        public EntityManager(IDbContextManager dbContextManager, DbContextFactory dbContextFactory, string contextName, string entityName)
         {
+            _dbContextManager = dbContextManager;
             _dbContextFactory = dbContextFactory;
             ContextName = contextName;
             EntityName = entityName;
@@ -34,11 +36,7 @@ namespace FFQueryBuilder.BusinessLogic
 
             Context = _dbContextFactory.GetDbContext(ContextName);
 
-            // TODO
-            // Invertire la dipendenza o spostare GetDbSet
-            var cm = new DbContextManager(_dbContextFactory);
-
-            Entity = cm.GetDbSet(Context, EntityName);
+            Entity = _dbContextManager.GetDbSet(Context, EntityName);
         }
     }
 }

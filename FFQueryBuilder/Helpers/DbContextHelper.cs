@@ -51,7 +51,7 @@ namespace FFQueryBuilder
                 .Map<List<Microsoft.EntityFrameworkCore.Metadata.IProperty>, List<ModelInfo>>(columns);
         }
 
-        internal dynamic GetDbSet(DbContext context, string table)
+        public dynamic GetDbSet(DbContext context, string table)
         {
             var dbSet = ConfiguredDbSets(context)
                 .FirstOrDefault(x => x.Name == table);
@@ -93,6 +93,6 @@ namespace FFQueryBuilder
     {
         IEnumerable<ConfiguredContexts> GetConfiguredContexts();
         IEnumerable<ModelInfo> EntityInformation(string contextName, string entityName);
-      //  IList<Type> ConfiguredDbSets(DbContext context);
+        dynamic GetDbSet(DbContext context, string table);
     }
 }

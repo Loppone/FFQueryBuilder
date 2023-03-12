@@ -1,8 +1,8 @@
-﻿using FFQueryBuilder.BusinessLogic;
+﻿using FFQueryBuilder;
+using FFQueryBuilder.BusinessLogic;
 using FFQueryBuilder.Context;
 using FFQueryBuilder.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using NSwag.Annotations;
 using System.Net;
 
@@ -13,11 +13,13 @@ namespace ApiTest.Controllers
     public class AddController : ControllerBase
     {
         private readonly DbContextFactory _contextFactory;
+        private readonly IDbContextManager _dbContextManager;
         private readonly IWriteableRepository _repository;
 
-        public AddController(DbContextFactory contextFactory, IWriteableRepository repository)
+        public AddController(DbContextFactory contextFactory, IDbContextManager dbContextManager, IWriteableRepository repository)
         {
             _contextFactory = contextFactory;
+            _dbContextManager = dbContextManager;
             _repository = repository;
         }
 
@@ -26,7 +28,10 @@ namespace ApiTest.Controllers
         [SwaggerResponse(HttpStatusCode.InternalServerError, typeof(string), Description = "Internal Server Error")]
         public ActionResult Post(string db, string table, Dictionary<string,object> row)
         {
-            var manager = new EntityManager(_contextFactory, db, table);
+            // TODO
+            // Invertire eventualmente la dipendenza
+            var manager = new EntityManager(_dbContextManager, _contextFactory, db, table);
+            
             manager.CreateEntityInstance(row);
 
             _repository.Add(manager.Context, manager.Entity, manager.EntityValues);

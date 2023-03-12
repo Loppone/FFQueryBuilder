@@ -34,8 +34,10 @@ namespace FFQueryBuilder.DataAccess
         {
             var q = db.Set<T>()
             .FilterBy(page.Filters)
-            .Skip(page.CurrentPage)
+            .Skip(page.CurrentPage - 1)
             .Take(page.ItemPerPage);
+
+            var qr = q.ToQueryString();
 
             return q.ToList();
         }
