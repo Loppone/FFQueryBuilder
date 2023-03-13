@@ -1,12 +1,18 @@
 ﻿using FFQueryBuilder.Helpers;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace FFQueryBuilder.EntityBuilder
 {
     public class EntityBuilderSerialization : IEntityBuilder
     {
+        private readonly JsonSerializerOptions _options =
+            new JsonSerializerOptions
+            {
+                //PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                PropertyNameCaseInsensitive = true
+            };
         public string EntityName { get; set; }
         public Dictionary<string, object> SourceFields { get; set; }
 
@@ -27,7 +33,9 @@ namespace FFQueryBuilder.EntityBuilder
 
         private T Deserialize<T>(T obj, string json)
         {
-            return System.Text.Json.JsonSerializer.Deserialize<T>(json);
+            var r = System.Text.Json.JsonSerializer.Deserialize<T>(json, _options);
+
+            return r;
         }
     }
 }

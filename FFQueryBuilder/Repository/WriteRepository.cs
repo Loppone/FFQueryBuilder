@@ -1,20 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace FFQueryBuilder.Repository
 {
     public class WriteRepository : IWriteableRepository
     {
-        public WriteRepository()
-        {
+        private readonly IDbContextManager _dbContextManager;
 
+        public DbContext Context { get; set; }
+        public dynamic Entity { get; set; }
+
+        public WriteRepository(IDbContextManager dbContextManager)
+        {
+            _dbContextManager = dbContextManager;
         }
 
-        public int? Add(DbContext context, dynamic dbSet, dynamic entity)
+        public object Add(dynamic values)
         {
-            AddEntity(context,dbSet,entity);
-            context.SaveChanges();
+            // TODO: validazione Context e Entity
 
-            return 0; // Per ora
+            AddEntity(Context, Entity, values);
+            Context.SaveChanges();
+
+            //Reperisco il campo PK. In questa versione viene ritornato un object per un singolo valore di PK.
+            //Per le tabelle fatte male con più campi di PK non torna la prima pk che trova.
+            return _dbContextManager.PrimaryKeyValue(Context, values).Value;
         }
 
         private static void AddEntity<T>(DbContext db, DbSet<T> _, T entity) where T : class
@@ -29,6 +39,11 @@ namespace FFQueryBuilder.Repository
         }
 
         public dynamic Update(dynamic entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int? Add(DbContext context, dynamic dbSet, dynamic entity)
         {
             throw new System.NotImplementedException();
         }

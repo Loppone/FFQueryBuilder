@@ -10,23 +10,19 @@ namespace FFQueryBuilder.DataAccess
     public class PagingQuery : IPaging
     {
         private readonly DbContextFactory _dbContextFactory;
+        private readonly IDbContextManager _dbContextManager;
 
-        public PagingQuery(DbContextFactory dbContextFactory)
+        public PagingQuery(DbContextFactory dbContextFactory, IDbContextManager dbContextManager)
         {
             _dbContextFactory = dbContextFactory;
+            _dbContextManager = dbContextManager;
         }
 
 
         public dynamic GetData(string contextName, string tableName, Paging page)
         {
             var context = _dbContextFactory.GetDbContext(contextName);
-
-            // TODO
-            // Invertire la dipendenza o spostare GetDbSet
-
-            var dm = new DbContextManager(_dbContextFactory);
-
-            var dbSet = dm.GetDbSet(context, tableName);
+            var dbSet = _dbContextManager.GetDbSet(context, tableName);
             return GetDataInternal(context, dbSet, page);
         }
 

@@ -34,8 +34,10 @@ namespace ApiTest.Controllers
             
             manager.CreateEntityInstance(row);
 
-            _repository.Add(manager.Context, manager.Entity, manager.EntityValues);
-            return Ok();
+            _repository.Context = manager.Context;
+            _repository.Entity = manager.Entity;
+            
+            return Ok(_repository.Add(manager.EntityValues));
         }
     }
 }

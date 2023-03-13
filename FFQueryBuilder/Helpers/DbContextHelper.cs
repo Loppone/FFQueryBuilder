@@ -51,6 +51,24 @@ namespace FFQueryBuilder
                 .Map<List<Microsoft.EntityFrameworkCore.Metadata.IProperty>, List<ModelInfo>>(columns);
         }
 
+        public KeyValuePair<string,object> PrimaryKeyValue(DbContext context, dynamic entity)
+        {
+            var entityName = entity.GetType().Name;
+
+            var internalEntityName = ConfiguredDbSets(context)
+                .FirstOrDefault(x => x.Name == entityName);
+
+            var pkColumn = context.Model.FindEntityType(internalEntityName)
+                .GetProperties()
+                .FirstOrDefault(x => x.IsPrimaryKey())
+                .Name;
+
+            var entVal = entity.GetType().GetProperty(pkColumn).GetValue(entity, null);
+            var res = new KeyValuePair<string, object>(pkColumn, entVal);
+
+            return res;
+        }
+
         public dynamic GetDbSet(DbContext context, string table)
         {
             var dbSet = ConfiguredDbSets(context)
@@ -94,5 +112,6 @@ namespace FFQueryBuilder
         IEnumerable<ConfiguredContexts> GetConfiguredContexts();
         IEnumerable<ModelInfo> EntityInformation(string contextName, string entityName);
         dynamic GetDbSet(DbContext context, string table);
+        KeyValuePair<string, object> PrimaryKeyValue(DbContext context, dynamic entity);
     }
 }
