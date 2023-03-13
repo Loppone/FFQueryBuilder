@@ -79,24 +79,22 @@ namespace FFQueryBuilder
             return Activator.CreateInstance(intenalType, context, dbSet.Name);
         }
 
-        internal dynamic GetDbSet(string contextName, string entityName)
-        {
-            var context = _dbContextFactory.GetDbContext(contextName);
-
-            return GetDbSet(context, entityName);
-        }
-
-        internal dynamic GetEntity(string contextName, string entityName)
-        {
-            var dbSet = GetDbSet(contextName, entityName);
-            
-            return dbSet.FullName;
-        }
-
         public IList<Type> ConfiguredDbSets(DbContext context)
         {
             return ConfiguredDbSetsQuery(context)
                 .ToList();
+        }
+     
+        /// <summary>
+        /// Torna un DbSet<T> agganciato al contesto
+        /// </summary>
+        /// <typeparam name="T">tipo del DbSet</typeparam>
+        /// <param name="contesto">Contesto</param>
+        /// <param name="_">DbSet tipizzato, ma passato come dynamic</param>
+        /// <returns></returns>
+        public static DbSet<T> SetEntity<T>(DbContext contesto, DbSet<T> _) where T : class
+        {
+            return contesto.Set<T>();
         }
 
         private static IEnumerable<Type> ConfiguredDbSetsQuery(DbContext context)
@@ -105,13 +103,6 @@ namespace FFQueryBuilder
                 .Where(prop => prop.PropertyType.IsGenericType && prop.PropertyType.Name.ToLower().Contains("dbset"))
                 .Select(ptype => ptype.PropertyType.GetGenericArguments()[0]);
         }
-    }
 
-    public interface IDbContextManager
-    {
-        IEnumerable<ConfiguredContexts> GetConfiguredContexts();
-        IEnumerable<ModelInfo> EntityInformation(string contextName, string entityName);
-        dynamic GetDbSet(DbContext context, string table);
-        KeyValuePair<string, object> PrimaryKeyValue(DbContext context, dynamic entity);
     }
 }

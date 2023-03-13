@@ -12,7 +12,7 @@
         /// Elimina un record.
         /// </summary>
         /// <returns>Torna il record cancellato</returns>
-        dynamic Delete();
+        dynamic Delete(object id);
 
         /// <summary>
         /// Aggiorna un record.

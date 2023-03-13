@@ -19,31 +19,23 @@ namespace FFQueryBuilder.Repository
         {
             // TODO: validazione Context e Entity
 
-            AddEntity(Context, Entity, values);
+            DbContextManager.SetEntity(Context, Entity)
+                .Add(values);
+
             Context.SaveChanges();
 
-            //Reperisco il campo PK. In questa versione viene ritornato un object per un singolo valore di PK.
-            //Per le tabelle fatte male con più campi di PK non torna la prima pk che trova.
+            // Reperisco il campo PK. In questa versione viene ritornato un object per un singolo valore di PK.
+            // Per le tabelle fatte male con più campi di PK non torna la prima pk che trova.
+            // Andrebbe considerato di non trattare le anagrafiche con pk multipla e meglio se con id numerico
             return _dbContextManager.PrimaryKeyValue(Context, values).Value;
         }
 
-        private static void AddEntity<T>(DbContext db, DbSet<T> _, T entity) where T : class
-        {
-            var q = db.Set<T>()
-                .Add(entity);
-        }
-
-        public dynamic Delete()
+        public dynamic Delete(object id)
         {
             throw new System.NotImplementedException();
         }
 
         public dynamic Update(dynamic entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public int? Add(DbContext context, dynamic dbSet, dynamic entity)
         {
             throw new System.NotImplementedException();
         }

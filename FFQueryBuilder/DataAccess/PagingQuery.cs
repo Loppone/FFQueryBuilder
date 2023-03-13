@@ -1,7 +1,6 @@
 ﻿using FFQueryBuilder.Context;
 using FFQueryBuilder.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using System.Collections.Generic;
 using System.Linq;
 
