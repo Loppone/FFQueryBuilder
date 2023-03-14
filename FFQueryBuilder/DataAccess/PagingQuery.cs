@@ -21,7 +21,7 @@ namespace FFQueryBuilder.DataAccess
         public dynamic GetData(string contextName, string tableName, Paging page)
         {
             var context = _dbContextFactory.GetDbContext(contextName);
-            var dbSet = _dbContextManager.GetDbSet(context, tableName);
+            var dbSet = _dbContextManager.GetEntityFrameworkDbSet(context, tableName);
             return GetDataInternal(context, dbSet, page);
         }
 

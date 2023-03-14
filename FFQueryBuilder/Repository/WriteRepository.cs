@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 
 namespace FFQueryBuilder.Repository
@@ -6,13 +7,17 @@ namespace FFQueryBuilder.Repository
     public class WriteRepository : IWriteableRepository
     {
         private readonly IDbContextManager _dbContextManager;
+        private readonly IReadableRepository _readableRepository;
 
         public DbContext Context { get; set; }
         public dynamic Entity { get; set; }
+        public string ContextName { get; set; }
+        public string EntityName { get; set; }
 
-        public WriteRepository(IDbContextManager dbContextManager)
+        public WriteRepository(IDbContextManager dbContextManager, IReadableRepository readableRepository)
         {
             _dbContextManager = dbContextManager;
+            _readableRepository = readableRepository;
         }
 
         public object Add(dynamic values)
@@ -32,7 +37,35 @@ namespace FFQueryBuilder.Repository
 
         public dynamic Delete(object id)
         {
-            throw new System.NotImplementedException();
+            Initialize();
+
+            // Get della riga
+            dynamic entityToRemove = _readableRepository.GetById(id);
+
+            if (entityToRemove == null)
+            {
+                return null; // TODO: Per ora torno null quando non viene trovato il record
+            }
+
+            // Delete
+            DbContextManager.SetEntity(Context, Entity)
+                .Remove(entityToRemove);
+
+            Context.SaveChanges();
+
+            return entityToRemove;
+        }
+
+        private void Initialize()
+        {
+            _readableRepository.ContextName = ContextName;
+            _readableRepository.EntityName = EntityName;
+
+            if (Context != null)
+                _readableRepository.Context = Context;
+
+            if (Entity != null)
+                _readableRepository.Entity = Entity;
         }
 
         public dynamic Update(dynamic entity)

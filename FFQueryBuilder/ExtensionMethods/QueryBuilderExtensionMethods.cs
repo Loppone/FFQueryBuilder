@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -33,6 +34,27 @@ namespace FFQueryBuilder
             }
 
             return query;
+        }
+
+        public static T FirstOrDefaultByIdPrimaryKey<T>(this IQueryable<T> query, string propertyName, object propertyValue) where T : class
+        {
+            if (!string.IsNullOrEmpty(propertyName))
+            {
+                var param = Expression.Parameter(typeof(T), "x");
+                var prop = Expression.PropertyOrField(param, propertyName);
+
+                var filterHandler = FilterFactory.CreateFilters(prop.Type);
+                var value = filterHandler.GetValue(propertyValue.ToString());
+
+                var conditionOperatorHandler = ConditionOperatorFactory.CreateConditionOperators(CompareOperator.Uguale);
+                var @operator = conditionOperatorHandler.Get(prop, value);
+
+                var lambda = Expression.Lambda<Func<T, bool>>(@operator, param);
+
+                return query.FirstOrDefault(lambda);
+            }
+
+            return null;
         }
 
         public static IQueryable<T> OrderByField<T>(this IQueryable<T> query, OrderItem order)

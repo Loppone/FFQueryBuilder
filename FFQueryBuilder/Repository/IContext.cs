@@ -10,5 +10,8 @@ namespace FFQueryBuilder.Repository
     {
         public DbContext Context { get; set; }
         public dynamic Entity { get; set; }
+
+        public string ContextName { get; set; }
+        public string EntityName { get; set; }
     }
 }

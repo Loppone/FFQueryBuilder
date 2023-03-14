@@ -45,6 +45,7 @@ builder.Services.AddScoped<IPaging, PagingQuery>();
 builder.Services.AddAutoMapper(typeof(ContextProfile).Assembly);
 
 builder.Services.AddTransient<IWriteableRepository, WriteRepository>();
+builder.Services.AddTransient<IReadableRepository, ReadRepository>();
 
 var app = builder.Build();
 

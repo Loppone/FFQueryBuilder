@@ -45,7 +45,9 @@ namespace FFQueryBuilder
             var internalEntityName = ConfiguredDbSets(context)
                 .FirstOrDefault(x => x.Name == entityName);
 
-            var columns = context.Model.FindEntityType(internalEntityName).GetProperties().ToList();
+            var columns = context.Model.FindEntityType(internalEntityName)
+                .GetProperties()
+                .ToList();
 
             return AutoMapperSingleton.Instance.Mapper
                 .Map<List<Microsoft.EntityFrameworkCore.Metadata.IProperty>, List<ModelInfo>>(columns);
@@ -69,7 +71,7 @@ namespace FFQueryBuilder
             return res;
         }
 
-        public dynamic GetDbSet(DbContext context, string table)
+        public dynamic GetEntityFrameworkDbSet(DbContext context, string table)
         {
             var dbSet = ConfiguredDbSets(context)
                 .FirstOrDefault(x => x.Name == table);
@@ -77,6 +79,16 @@ namespace FFQueryBuilder
             Type intenalType = typeof(InternalDbSet<>).MakeGenericType(dbSet);
 
             return Activator.CreateInstance(intenalType, context, dbSet.Name);
+        }
+
+        public dynamic GetInternalType(DbContext context, string table)
+        {
+            var dbSet = ConfiguredDbSets(context)
+                .FirstOrDefault(x => x.Name == table);
+
+            var obj = Activator.CreateInstance(dbSet.Assembly.GetName().Name, dbSet.FullName);
+
+            return obj.Unwrap();
         }
 
         public IList<Type> ConfiguredDbSets(DbContext context)
