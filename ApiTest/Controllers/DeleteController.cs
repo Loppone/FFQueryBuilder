@@ -27,7 +27,7 @@ namespace ApiTest.Controllers
         [HttpDelete]
         [SwaggerResponse(HttpStatusCode.OK, typeof(object), Description = "Successfull operation")]
         [SwaggerResponse(HttpStatusCode.InternalServerError, typeof(string), Description = "Internal Server Error")]
-        public ActionResult Post(string contextName, string entityName, object id)
+        public ActionResult Delete(string contextName, string entityName, object id)
         {
             var manager = new EntityManager(_dbContextManager, _contextFactory, contextName, entityName);
 

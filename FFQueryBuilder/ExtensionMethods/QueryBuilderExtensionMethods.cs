@@ -36,6 +36,15 @@ namespace FFQueryBuilder
             return query;
         }
 
+        public static IQueryable<T> FilterBy<T>(this IQueryable<T> query, Dictionary<string, object> filters) where T : class
+        {
+            // Trasformo il dictionary in List<FilterItem> e richiamo il metodo FilterBy(List<FilterItem> filters)
+            var filterItems = FilterItem.ConvertFrom(filters);
+
+            return query
+                .FilterBy(filterItems);
+        }
+
         public static T FirstOrDefaultByIdPrimaryKey<T>(this IQueryable<T> query, string propertyName, object propertyValue) where T : class
         {
             if (!string.IsNullOrEmpty(propertyName))

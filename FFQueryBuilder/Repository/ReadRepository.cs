@@ -36,5 +36,15 @@ namespace FFQueryBuilder.Repository
 
             return Query.GetById(Context, Entity, pkProperty, id.ToString());
         }
+
+        /// <summary>
+        /// Torna l'occorrenza del primo record trovato in base ai filtri passati in input
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>        
+        public dynamic First(Dictionary<string, object> filter)
+        {
+            return Query.GetByMultipleFields(Context, Entity, filter);
+        }
     }
 }
