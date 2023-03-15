@@ -9,7 +9,6 @@ namespace FFQueryBuilder
 {
     /// <summary>
     /// Classe di Business per le operazioni di alto livello esposte al client
-    /// </summary>
     /// <remarks>Tutte le operazioni di business sul database passano da qua</remarks>
     public class DbOperation
     {
@@ -27,7 +26,7 @@ namespace FFQueryBuilder
         public dynamic Entity { get; set; }
 
         /// <summary>
-        /// Crea il DbContext e il Dbset
+        /// Inizializza le proprietà e crea un'istanza di EntityManager (quindi con i riferimenti di DbContext e DbSet)
         /// </summary>
         /// <param name="contextName"></param>
         /// <param name="entityName"></param>

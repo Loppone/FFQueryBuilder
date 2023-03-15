@@ -9,6 +9,9 @@ using System.Linq;
 
 namespace FFQueryBuilder
 {
+    /// <summary>
+    /// Gestore dei DbContext. Contiene le informazioni di accesso al DbContext e ai suoi DbSet.
+    /// </summary>
     public class DbContextManager : IDbContextManager
     {
         private readonly DbContextFactory _dbContextFactory;

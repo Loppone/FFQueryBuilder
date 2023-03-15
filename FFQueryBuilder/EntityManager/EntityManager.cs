@@ -6,6 +6,8 @@ using System.Collections.Generic;
 
 namespace FFQueryBuilder.BusinessLogic
 {
+    /// <summary>
+    /// Classe di gestione delle entità (DbSet).
     public class EntityManager : IEntityManager
     {
         private readonly IDbContextManager _dbContextManager;
@@ -37,6 +39,9 @@ namespace FFQueryBuilder.BusinessLogic
 
         public string EntityName { get; set; }
 
+        /// <summary>
+        /// Crea un istanza di oggetto "EntityValues" di tipo dinamico a partire da un dizionario di proprietà coi relativi valori
+        /// <param name="properties"></param>
         public void CreateEntityInstance(Dictionary<string, object> properties)
         {
             var builder = new EntityBuilderSerialization
