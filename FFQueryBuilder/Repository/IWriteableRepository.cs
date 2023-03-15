@@ -1,4 +1,6 @@
-﻿namespace FFQueryBuilder.Repository
+﻿using System.Collections.Generic;
+
+namespace FFQueryBuilder.Repository
 {
     public interface IWriteableRepository : IContext
     {
@@ -12,7 +14,7 @@
         /// Elimina un record.
         /// </summary>
         /// <returns>Torna il record cancellato</returns>
-        dynamic Delete(object id);
+        dynamic Delete(Dictionary<string, object> row);
 
         /// <summary>
         /// Aggiorna un record.

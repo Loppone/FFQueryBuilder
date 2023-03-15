@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
-namespace FFQueryBuilder.DynamicMapper
+namespace FFQueryBuilder
 {
     public class DynamicMapper
     {

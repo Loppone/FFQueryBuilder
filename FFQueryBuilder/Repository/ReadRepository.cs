@@ -1,9 +1,7 @@
-﻿using FF3DContexts.SqlModels;
-using FFQueryBuilder.DataAccess;
+﻿using FFQueryBuilder.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 
 namespace FFQueryBuilder.Repository
 {

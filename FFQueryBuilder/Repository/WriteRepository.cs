@@ -35,12 +35,12 @@ namespace FFQueryBuilder.Repository
             return _dbContextManager.PrimaryKeyValue(Context, values).Value;
         }
 
-        public dynamic Delete(object id)
+        public dynamic Delete(Dictionary<string,object> row)
         {
             Initialize();
 
             // Get della riga
-            dynamic entityToRemove = _readableRepository.GetById(id);
+            dynamic entityToRemove = _readableRepository.First(row);
 
             if (entityToRemove == null)
             {

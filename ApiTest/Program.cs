@@ -32,20 +32,22 @@ builder.Services.AddDbContext<ModelContext>(opt =>
         );
 });
 
-//builder.Services.AddScoped<DbContextFactory>(x =>
-//    {
-//        return ActivatorUtilities.CreateInstance<DbContextFactory>(x);
-//    }
-//);
 
+// Factories
 builder.Services.AddScoped<DbContextFactory>();
+builder.Services.AddTransient<ICreateFactory<EntityManager>, EntityManagerFactory>();
+builder.Services.AddTransient<ICreateFactory<DbOperation>, DbOperationFactory>();
+
+// BL
 builder.Services.AddScoped<IDbContextManager, DbContextManager>();
-builder.Services.AddScoped<IPaging, PagingQuery>();
+builder.Services.AddTransient<IEntityManager, EntityManager>();
 
-builder.Services.AddAutoMapper(typeof(ContextProfile).Assembly);
-
+// Repo
 builder.Services.AddTransient<IWriteableRepository, WriteRepository>();
 builder.Services.AddTransient<IReadableRepository, ReadRepository>();
+
+builder.Services.AddAutoMapper(typeof(ContextProfile).Assembly);
+builder.Services.AddScoped<IPaging, PagingQuery>();
 
 var app = builder.Build();
 
